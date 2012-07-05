@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../validator.php';
+require_once __DIR__ . '/../Validator.php';
 
 /**
  * よく使う(かもしれない)バリデートインスタンスを返します.

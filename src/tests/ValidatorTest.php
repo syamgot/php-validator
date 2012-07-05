@@ -9,7 +9,7 @@ require_once __DIR__ . '/../validator/LEValidator.php';
 require_once __DIR__ . '/../validator/LTValidator.php';
 require_once __DIR__ . '/../validator/NotEmptyValidator.php';
 require_once __DIR__ . '/../validator/NotNullValidator.php';
-require_once __DIR__ . '/../validator/StrLEngthValidator.php';
+require_once __DIR__ . '/../validator/StrLengthValidator.php';
 
 /**
  * 
@@ -116,15 +116,15 @@ class validatorTest extends PHPUnit_Framework_TestCase {
     		
     		// クラスを生成して追加するパターン
     		  array(array(
-    				  new StrLEngthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
+    				  new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
     				, new AlumValidator()
     			), 'abcde12345', true)
     		, array(array(
-    				  new StrLEngthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
+    				  new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
     				, new AlumValidator()
     			), 'abcde12***', false)
 	    	, array(array(
-			    	  new StrLEngthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
+			    	  new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
 			    	, new AlumValidator()
 		    	), 'abcde12あいう', false)
 		    
@@ -147,15 +147,15 @@ class validatorTest extends PHPUnit_Framework_TestCase {
 		    
 		    // 名前を指定して追加するパターン
     		, array(array(
-	    			  array('name' => 'StrLEngth', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
+	    			  array('name' => 'StrLength', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
 			    	, array('name' => 'Alum')
 		    	), 'abcde12345', true)
 	    	, array(array(
-	    			  array('name' => 'StrLEngth', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
+	    			  array('name' => 'StrLength', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
 			    	, array('name' => 'Alum')
 		    	), 'abcde12***', false)
 	    	, array(array(
-	    			  array('name' => 'StrLEngth', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
+	    			  array('name' => 'StrLength', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
 			    	, array('name' => 'Alum')
 		    	), 'abcde12あいう', false)
 		    	
