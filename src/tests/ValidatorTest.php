@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../validator/validator.php';
+require_once __DIR__ . '/../validator/Validator.php';
 require_once __DIR__ . '/../validator/AlumValidator.php';
 require_once __DIR__ . '/../validator/DataTypeValidator.php';
 require_once __DIR__ . '/../validator/GEValidator.php';
@@ -54,7 +54,7 @@ class validatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 * Enter description here ...
 	 */
-	public function testGEtValidator() {
+	public function testGetValidator() {
 		$v = new Validator();
 		$this->assertNull($v->getValidator('Alum'));
 		$v->addValidator(new AlumValidator());
