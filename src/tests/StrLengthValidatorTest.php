@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../validator/StrLEngthValidator.php';
+require_once __DIR__ . '/../validator/StrLengthValidator.php';
 
 /**
- * StrLEngthValidator unit test
+ * StrLengthValidator unit test
  * 
  * @author syamgot
  */
-class StrLEngthValidatorTest extends PHPUnit_Framework_TestCase {
+class StrLengthValidatorTest extends PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -29,7 +29,7 @@ class StrLEngthValidatorTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider providerConstruct
 	 */
 	public function testConstruct($param, $val, $res) {
-		$v = new StrLEngthValidator($param);
+		$v = new StrLengthValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
 
@@ -43,7 +43,7 @@ class StrLEngthValidatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new StrLEngthValidator();
+		self::$obj = new StrLengthValidator();
 	}
 	
 	/**
@@ -69,7 +69,7 @@ class StrLEngthValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
 	
 	/**
-	 * @var StrLEngthValidator
+	 * @var StrLengthValidator
 	 */
 	protected static $obj;
 	

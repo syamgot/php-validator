@@ -27,7 +27,7 @@ class AllTests {
 		, 'NotEmptyValidatorTest'
 		, 'NotNullValidatorTest'
 		, 'RegularExpressionValidatorTest'
-		, 'StrLEngthValidatorTest'
+		, 'StrLengthValidatorTest'
 		, 'ValidatorTemplatesTest'
 	);
 }

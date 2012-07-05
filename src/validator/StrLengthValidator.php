@@ -11,9 +11,9 @@ require_once __DIR__ . '/IValidator.php';
  * @author syamgot
  *
  */
-class StrLEngthValidator implements IValidator {
+class StrLengthValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[StrLEngthValidator] it does not match. (%s)";
+	private $_errorMessageTmpl = "[StrLengthValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_max;
@@ -22,7 +22,7 @@ class StrLEngthValidator implements IValidator {
 
 	/**
 	 * 
-	 * 新しい StrLEngthValidator インスタンスを作成します.
+	 * 新しい StrLengthValidator インスタンスを作成します.
 	 * 
 	 * @param mixed $param
 	 */

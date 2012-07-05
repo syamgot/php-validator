@@ -9,7 +9,7 @@ require_once __DIR__ . '/IValidator.php';
  * 他のバリデートクラスをセットして、一括でバリデート処理を行うことができます。
  * <code>
  * $validator = new Validator();
- * $validator->addValidator(new StrLEngthValidator(array('min' => 5, 'max' => 10, 'charset' => 'sjis')));
+ * $validator->addValidator(new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'sjis')));
  * $validator->addValidator(new AlumValidator());
  * if(!$validator->isValid('asdfzxcvqwer****')) {
  * 	echo $validator->getErrorMessage();
