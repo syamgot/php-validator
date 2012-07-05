@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="Validator.nowpro" basedir="." default="test">
+
+	<!--
+	**************************************************
+	ビルドタスク設定	
+	**************************************************
+	-->
+	<target name="all" depends="clean, compile, doc" />
+
+	<!--
+	**************************************************
+	コンパイル設定
+	**************************************************
+	-->
+	<property name="PRJ_NAME" value="${ant.project.name}" />
+	<property name="SRC_DIR" value="${project.basedir}/src" />
+	<property name="LIBS_DIR" value="${project.basedir}/libs" />
+	<property name="DOC_DIR" value="${project.basedir}/doc" />
+	<property name="REPO_DIR" value="${project.basedir}/reports" />
+	<property name="CLOVER_DIR" value="${project.basedir}/clover" />
+
+	<!--
+	**************************************************	
+	ターゲット処理
+	**************************************************
+	-->
+	<!-- phpunit -->
+	<target name="test">
+		<delete dir="${REPO_DIR}" includeemptydirs="true" />
+		<delete dir="${CLOVER_DIR}" includeemptydirs="true" />
+		<mkdir dir="${REPO_DIR}" />
+		<mkdir dir="${CLOVER_DIR}" />
+
+		<coverage-setup database="${REPO_DIR}/coverage.db">
+			<fileset dir=".">
+				<include name="src/validator/**/*.php" /> 
+				<exclude name="src/tests/**/*" /> 
+			</fileset>
+		</coverage-setup>	
+
+		<phpunit codecoverage="true" haltonfailure="false" printsummary="true">
+			<formatter todir="${REPO_DIR}" type="xml" outfile="unitreport.xml" />
+			<formatter todir="${REPO_DIR}" type="clover" outfile="clover.xml"/>
+			<batchtest>
+				<fileset dir=".">
+					<include name="src/tests/**/*Test.php" /> 
+				</fileset>
+			</batchtest>
+		</phpunit>
+
+		<coverage-report outfile="clover.xml">
+			<report todir="${CLOVER_DIR}" />
+		</coverage-report>
+	</target>
+
+	<!-- PHPDocumentor -->
+	<target name="doc">
+		<phpdoc title="${PRJ_NAME}" sourcecode="yes" destdir="${DOC_DIR}" output="HTML:Smarty:default" >
+			<fileset dir=".">
+				<include name="src/validator/**/*.php" />
+			</fileset>
+		</phpdoc>
+	</target>
+
+	<!-- コンパイル -->
+	<target name="compile" depends="">
+	</target>
+
+	<!-- クリーンアップ -->
+    <target name="clean" depends="" description=""> 
+    </target> 
+
+</project>
+
