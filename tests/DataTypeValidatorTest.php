@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../validator/DataTypeValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/DataTypeValidator.php';
+use com\syamgot\php\validator\DataTypeValidator;
 
 /**
  * DataTypeValidator unit test

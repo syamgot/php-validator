@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../validator/StrLengthValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/StrLengthValidator.php';
+
+use com\syamgot\php\validator\StrLengthValidator;
+
 
 /**
  * StrLengthValidator unit test

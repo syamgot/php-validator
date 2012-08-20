@@ -1,20 +1,26 @@
 <?php
-/**
- * 
- * バリデートクラスのインターフェイスです
- * 
- * @package validator
- * @author syamgot
- */
-interface IValidator {
+
+namespace com\syamgot\php\validator {
 	
 	/**
 	 * 
-	 * 引数が有効かどうかを返します。
+	 * バリデートクラスのインターフェイスです
 	 * 
-	 * @param mixed $val
-	 * @return boolean
+	 * @package validator
+	 * @author syamgot
 	 */
-	public function isValid($val);
+	interface IValidator {
+		
+		/**
+		 * 
+		 * 引数が有効かどうかを返します。
+		 * 
+		 * @param mixed $val
+		 * @return boolean
+		 */
+		public function isValid($val);
+		
+	}
 	
 }
+

@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../validator/NotNullValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/NotNullValidator.php';
+
+use com\syamgot\php\validator\NotNullValidator;
+
 
 /**
  * NotNullValidator unit test

@@ -1,15 +1,29 @@
 <?php
 
-require_once __DIR__ . '/../validator/Validator.php';
-require_once __DIR__ . '/../validator/AlumValidator.php';
-require_once __DIR__ . '/../validator/DataTypeValidator.php';
-require_once __DIR__ . '/../validator/GEValidator.php';
-require_once __DIR__ . '/../validator/GTValidator.php';
-require_once __DIR__ . '/../validator/LEValidator.php';
-require_once __DIR__ . '/../validator/LTValidator.php';
-require_once __DIR__ . '/../validator/NotEmptyValidator.php';
-require_once __DIR__ . '/../validator/NotNullValidator.php';
-require_once __DIR__ . '/../validator/StrLengthValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/AlumValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/DataTypeValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/GEValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/GTValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/LEValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/LTValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/NotEmptyValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/NotNullValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/StrLengthValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/Validator.php';
+
+use com\syamgot\php\validator\AlumValidator;
+use com\syamgot\php\validator\DataTypeValidator;
+use com\syamgot\php\validator\GEValidator;
+use com\syamgot\php\validator\GTValidator;
+use com\syamgot\php\validator\IValidator;
+use com\syamgot\php\validator\LEValidator;
+use com\syamgot\php\validator\LTValidator;
+use com\syamgot\php\validator\NotEmptyValidator;
+use com\syamgot\php\validator\NotNullValidator;
+use com\syamgot\php\validator\RegularExpressionValidator;
+use com\syamgot\php\validator\StrLengthValidator;
+use com\syamgot\php\validator\Validator;
+
 
 /**
  * 

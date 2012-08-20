@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../validator/GTValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/GTValidator.php';
+
+use com\syamgot\php\validator\GTValidator;
+
 
 /**
  * GTValidator unit test

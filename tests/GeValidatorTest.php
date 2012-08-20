@@ -1,6 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../validator/GEValidator.php';
+
+require_once __DIR__ . '/../src/com/syamgot/php/validator/GEValidator.php';
+
+use com\syamgot\php\validator\GEValidator;
+
 
 /**
  * GEValidator unit test

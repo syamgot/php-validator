@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../validator/utils/ValidatorTemplates.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/utils/ValidatorTemplates.php';
+
+use com\syamgot\php\validator\utils\ValidatorTemplates;
+
 
 /**
  * 

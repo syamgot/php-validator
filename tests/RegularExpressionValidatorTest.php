@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../validator/RegularExpressionValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/RegularExpressionValidator.php';
+
+use com\syamgot\php\validator\RegularExpressionValidator;
+
 
 /**
  * RegularExpressionValidatorTest unit test

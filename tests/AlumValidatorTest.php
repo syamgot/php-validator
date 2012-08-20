@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../validator/AlumValidator.php';
+require_once __DIR__ . '/../src/com/syamgot/php/validator/AlumValidator.php';
+
+use com\syamgot\php\validator\AlumValidator;
+
 
 /**
  * AlumValidator unit test
