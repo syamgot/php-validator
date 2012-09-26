@@ -16,7 +16,7 @@
 	<property name="PRJ_NAME" value="${ant.project.name}" />
 	<property name="BASE_DIR" value="." />
 
-	<property name="SRC_DIR" value="validator" />
+	<property name="SRC_DIR" value="src" />
 	<property name="TEST_DIR" value="tests" />
 	<property name="LIBS_DIR" value="libs" />
 	
