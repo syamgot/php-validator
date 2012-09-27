@@ -26,12 +26,12 @@
 	<target name="menu">
 		<echo>
 			
-		Other Targets.
+		Targets
 		----------------------------------------
-		test 				: 
-		phpunit-clean 		: 
-		phpunit-prepare 	:
-		phpunit 			:
+		test                : 
+		phpunit-clean       : 
+		phpunit-prepare     :
+		phpunit             :
 		doc                 : 
 			
 		</echo>
@@ -75,7 +75,7 @@
 		</coverage-report>
 	
 		<phpmd rulesets="codesize,unusedcode,design,naming">
-			<formatter todir="${REPO_DIR}" type="xml" outfile="pmd.xml" />
+			<formatter type="xml" outfile="${REPO_DIR}/pmd.xml" />
 			<fileset dir="${BASE_DIR}">
 				<include name="${SRC_DIR}/**/*.php" /> 
 			</fileset>
