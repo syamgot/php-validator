@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<project name="php-validator" basedir="." default="test">
+<project name="php-validator" basedir="." default="menu">
 
 	<!--
 	**************************************************
-	ビルドタスク設定	
-	**************************************************
-	-->
-	<target name="all" depends="clean, compile, doc" />
-
-	<!--
-	**************************************************
-	コンパイル設定
+	Configuration.
 	**************************************************
 	-->
 	<property name="PRJ_NAME" value="${ant.project.name}" />
@@ -26,18 +19,40 @@
 
 	<!--
 	**************************************************	
-	ターゲット処理
+	Target Settings.
 	**************************************************
 	-->
 
+	<target name="menu">
+		<echo>
+			
+		Other Targets.
+		----------------------------------------
+		test 				: 
+		phpunit-clean 		: 
+		phpunit-prepare 	:
+		phpunit 			:
+		doc                 : 
+			
+		</echo>
+	</target>
+	
+	
 	<!-- phpunit -->
-	<target name="test">
-	    
+	<target name="test" depends="phpunit-clean, phpunit-prepare, phpunit" />
+	
+	<target name="phpunit-clean">
 		<delete dir="${REPO_DIR}" includeemptydirs="true" />
 		<delete dir="${CLOVER_DIR}" includeemptydirs="true" />
+	</target>
+	
+	<target name="phpunit-prepare">
 		<mkdir dir="${REPO_DIR}" />
 		<mkdir dir="${CLOVER_DIR}" />
-
+	</target>
+	
+	<target name="phpunit">
+	    
 		<coverage-setup database="${REPO_DIR}/coverage.db">
 			<fileset dir="${BASE_DIR}">
 				<include name="${SRC_DIR}/**/*.php" /> 
@@ -45,7 +60,7 @@
 			</fileset>
 		</coverage-setup>	
 
-		<phpunit codecoverage="true" haltonfailure="false" printsummary="true">
+		<phpunit codecoverage="true" printsummary="true">
 			<formatter todir="${REPO_DIR}" type="xml" outfile="unitreport.xml" />
 			<formatter todir="${REPO_DIR}" type="clover" outfile="clover.xml"/>
 			<batchtest>
@@ -58,24 +73,24 @@
 		<coverage-report outfile="clover.xml">
 			<report todir="${CLOVER_DIR}" />
 		</coverage-report>
+	
+		<phpmd rulesets="codesize,unusedcode,design,naming">
+			<formatter todir="${REPO_DIR}" type="xml" outfile="pmd.xml" />
+			<fileset dir="${BASE_DIR}">
+				<include name="${SRC_DIR}/**/*.php" /> 
+			</fileset>
+		</phpmd>
+		
 	</target>
 
 	<!-- PHPDocumentor -->
 	<target name="doc">
-		<phpdoc title="${PRJ_NAME}" sourcecode="yes" destdir="${DOC_DIR}" output="HTML:Smarty:default" >
+		<phpdoc title="${PRJ_NAME}" sourcecode="yes" destdir="${DOC_DIR}" output="HTML:frames:default" >
 			<fileset dir="${BASE_DIR}">
 				<include name="${SRC_DIR}/**/*.php" />
 			</fileset>
 		</phpdoc>
 	</target>
-
-	<!-- コンパイル -->
-	<target name="compile" depends="">
-	</target>
-
-	<!-- クリーンアップ -->
-    <target name="clean" depends="" description=""> 
-    </target> 
 
 </project>
 
