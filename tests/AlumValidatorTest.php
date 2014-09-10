@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../src/syamgot/validator/AlumValidator.php';
-
 use syamgot\validator\AlumValidator;
 
 

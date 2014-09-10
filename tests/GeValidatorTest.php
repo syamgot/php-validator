@@ -1,8 +1,5 @@
 <?php
 
-
-require_once __DIR__ . '/../src/syamgot/validator/GEValidator.php';
-
 use syamgot\validator\GEValidator;
 
 

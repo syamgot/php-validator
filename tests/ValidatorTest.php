@@ -1,16 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../src/syamgot/validator/AlumValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/DataTypeValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/GEValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/GTValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/LEValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/LTValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/NotEmptyValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/NotNullValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/StrLengthValidator.php';
-require_once __DIR__ . '/../src/syamgot/validator/Validator.php';
-
 use syamgot\validator\AlumValidator;
 use syamgot\validator\DataTypeValidator;
 use syamgot\validator\GEValidator;

@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../src/syamgot/validator/NotEmptyValidator.php';
-
 use syamgot\validator\NotEmptyValidator;
 
 

@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../src/syamgot/validator/LEValidator.php';
-
 use syamgot\validator\LEValidator;
 
 

@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../src/syamgot/validator/NotNullValidator.php';
-
 use syamgot\validator\NotNullValidator;
 
 
