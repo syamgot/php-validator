@@ -1,10 +1,10 @@
 <?php
 
-namespace com\syamgot\php\validator {
+namespace syamgot\validator {
 	
 	require_once __DIR__ . '/IValidator.php';
 
-	use com\syamgot\php\validator\IValidator;
+	use syamgot\validator\IValidator;
 
 	/**
 	 * 指定された数値より、大きいか等しい数値かを判定するバリデートクラスです.

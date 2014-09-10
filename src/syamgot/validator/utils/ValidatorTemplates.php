@@ -1,10 +1,10 @@
 <?php
 
-namespace com\syamgot\php\validator\utils {
+namespace syamgot\validator\utils {
 	
 	require_once __DIR__ . '/../Validator.php';
 
-	use com\syamgot\php\validator\Validator;
+	use syamgot\validator\Validator;
 	
 	
 	/**

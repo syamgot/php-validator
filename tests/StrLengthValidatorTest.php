@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../src/com/syamgot/php/validator/StrLengthValidator.php';
+require_once __DIR__ . '/../src/syamgot/validator/StrLengthValidator.php';
 
-use com\syamgot\php\validator\StrLengthValidator;
+use syamgot\validator\StrLengthValidator;
 
 
 /**

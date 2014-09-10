@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../src/com/syamgot/php/validator/NotEmptyValidator.php';
+require_once __DIR__ . '/../src/syamgot/validator/NotEmptyValidator.php';
 
-use com\syamgot\php\validator\NotEmptyValidator;
+use syamgot\validator\NotEmptyValidator;
 
 
 /**

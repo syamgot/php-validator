@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../src/com/syamgot/php/validator/RegularExpressionValidator.php';
+require_once __DIR__ . '/../src/syamgot/validator/RegularExpressionValidator.php';
 
-use com\syamgot\php\validator\RegularExpressionValidator;
+use syamgot\validator\RegularExpressionValidator;
 
 
 /**

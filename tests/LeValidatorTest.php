@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../src/com/syamgot/php/validator/LEValidator.php';
+require_once __DIR__ . '/../src/syamgot/validator/LEValidator.php';
 
-use com\syamgot\php\validator\LEValidator;
+use syamgot\validator\LEValidator;
 
 
 /**

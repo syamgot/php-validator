@@ -1,10 +1,10 @@
 <?php
 
-namespace com\syamgot\php\validator {
+namespace syamgot\validator {
 
 	require_once __DIR__ . '/IValidator.php';
 
-	use com\syamgot\php\validator\IValidator;
+	use syamgot\validator\IValidator;
 	use \InvalidArgumentException;
 	
 	/**

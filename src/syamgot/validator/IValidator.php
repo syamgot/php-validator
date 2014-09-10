@@ -1,6 +1,6 @@
 <?php
 
-namespace com\syamgot\php\validator {
+namespace syamgot\validator {
 	
 	/**
 	 * 
