@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use syamgot\validator\LEValidator;
 
 
@@ -8,7 +10,7 @@ use syamgot\validator\LEValidator;
  * 
  * @author syamgot
  */
-class LEValidatorTest extends PHPUnit_Framework_TestCase {
+class LEValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*

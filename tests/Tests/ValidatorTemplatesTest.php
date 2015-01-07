@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use syamgot\validator\utils\ValidatorTemplates;
 
 
@@ -9,7 +11,7 @@ use syamgot\validator\utils\ValidatorTemplates;
  *  
  * @author syamgot
  */
-class ValidatorTemplatesTest extends PHPUnit_Framework_TestCase {
+class ValidatorTemplatesTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*

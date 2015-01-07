@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use syamgot\validator\StrLengthValidator;
 
 
@@ -8,7 +10,7 @@ use syamgot\validator\StrLengthValidator;
  * 
  * @author syamgot
  */
-class StrLengthValidatorTest extends PHPUnit_Framework_TestCase {
+class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*

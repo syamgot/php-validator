@@ -1,13 +1,16 @@
 <?php
 
+namespace Tests;
+
 use syamgot\validator\DataTypeValidator;
+
 
 /**
  * DataTypeValidator unit test
  * 
  * @author syamgot
  */
-class DataTypeValidatorTest extends PHPUnit_Framework_TestCase {
+class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -18,15 +21,10 @@ class DataTypeValidatorTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * 
 	 * Enter description here ...
+	 * @expectedException Exception
 	 */
 	public function testException() {
-		try {
-			self::$obj->setDataType('');
-		}
-		catch (Exception $expected) {
-			return;
-		}
-		$this->fail();
+		self::$obj->setDataType('');
 	}
 
 	/**

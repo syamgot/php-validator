@@ -1,14 +1,16 @@
 <?php
 
-use syamgot\validator\NotEmptyValidator;
+namespace Tests;
+
+use syamgot\validator\GEValidator;
 
 
 /**
- * NotEmptyValidator unit test
+ * GEValidator unit test
  * 
  * @author syamgot
  */
-class NotEmptyValidatorTest extends PHPUnit_Framework_TestCase {
+class GEValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -17,11 +19,19 @@ class NotEmptyValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
     
 	/**
-	 * @dataProvider providerTest
-	 * 
+	 * @dataProvider providerIsValid
 	 */
-	public function testIsValid($val, $res) {
+	public function testIsValid($min, $val, $res) {
+		self::$obj->setMin($min);
 		$this->assertEquals(self::$obj->isValid($val), $res);
+	}
+	
+	/**
+	 * @dataProvider providerConstruct
+	 */
+	public function testConstruct($param, $val, $res) {
+		$v = new GEValidator($param);
+		$this->assertEquals($v->isValid($val), $res);
 	}
 	
 
@@ -35,7 +45,7 @@ class NotEmptyValidatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new NotEmptyValidator();
+		self::$obj = new GEValidator();
 	}
 	
 	/**
@@ -61,7 +71,7 @@ class NotEmptyValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
 	
 	/**
-	 * @var NotEmptyValidator
+	 * @var GEValidator
 	 */
 	protected static $obj;
 	
@@ -75,19 +85,27 @@ class NotEmptyValidatorTest extends PHPUnit_Framework_TestCase {
     /**
      * 
      */
-    public function providerTest() {
+    public function providerIsValid() {
     	return array(
-    		  array(false, false)
-    		, array(true, true)
-    		, array(0, false)
-    		, array(1, true)
-    		, array(0.0, false)
-    		, array(0.1, true)
-    		, array('', false)
-    		, array('hoge', true)
-    		, array(array(), false)
-    		, array(array('hoge'), true)
-    		, array(null, false)
+    		  array(5, 4, false)
+    		, array(5, 5, true)
+    		, array(5, 6, true)
+    		, array(0, -1, false)
+    		, array(0, 0, true)
+    	);
+    }
+    
+    /**
+     * 
+     */
+    public function providerConstruct() {
+    	return array(
+	    	  array(5, 4, false)
+	    	, array(5, 5, true)
+	    	, array(5, 6, true)
+	    	, array(array('min'=>5), 4, false)
+	    	, array(array('min'=>5), 5, true)
+	    	, array(array('min'=>5), 6, true)
     	);
     }
 

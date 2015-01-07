@@ -1,14 +1,16 @@
 <?php
 
-use syamgot\validator\AlumValidator;
+namespace Tests;
+
+use syamgot\validator\GTValidator;
 
 
 /**
- * AlumValidator unit test
+ * GTValidator unit test
  * 
  * @author syamgot
  */
-class AlumValidatorTest extends PHPUnit_Framework_TestCase {
+class GTValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -17,11 +19,19 @@ class AlumValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
     
 	/**
-	 * @dataProvider providerTest
-	 * 
+	 * @dataProvider providerIsValid
 	 */
-	public function testIsValid($val, $res) {
+	public function testIsValid($min, $val, $res) {
+		self::$obj->setMin($min);
 		$this->assertEquals(self::$obj->isValid($val), $res);
+	}
+	
+	/**
+	 * @dataProvider providerConstruct
+	 */
+	public function testConstruct($param, $val, $res) {
+		$v = new GTValidator($param);
+		$this->assertEquals($v->isValid($val), $res);
 	}
 	
 
@@ -35,7 +45,7 @@ class AlumValidatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new AlumValidator();
+		self::$obj = new GTValidator();
 	}
 	
 	/**
@@ -61,7 +71,7 @@ class AlumValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
 	
 	/**
-	 * @var AlumValidator
+	 * @var GTValidator
 	 */
 	protected static $obj;
 	
@@ -75,11 +85,27 @@ class AlumValidatorTest extends PHPUnit_Framework_TestCase {
     /**
      * 
      */
-    public function providerTest() {
+    public function providerIsValid() {
     	return array(
-    		  array('adifahi0208', true)
-    		, array('aidsfia((***!', false)
-    		, array('aaあああ', false)
+    		  array(5, 4, false)
+    		, array(5, 5, false)
+    		, array(5, 6, true)
+    		, array(0, -1, false)
+    		, array(0, 0, false)
+    	);
+    }
+    
+    /**
+     * 
+     */
+    public function providerConstruct() {
+    	return array(
+	    	  array(5, 4, false)
+	    	, array(5, 5, false)
+	    	, array(5, 6, true)
+	    	, array(array('min'=>5), 4, false)
+	    	, array(array('min'=>5), 5, false)
+	    	, array(array('min'=>5), 6, true)
     	);
     }
 

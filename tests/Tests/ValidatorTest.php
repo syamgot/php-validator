@@ -1,18 +1,20 @@
 <?php
 
-use syamgot\validator\AlumValidator;
-use syamgot\validator\DataTypeValidator;
-use syamgot\validator\GEValidator;
-use syamgot\validator\GTValidator;
-use syamgot\validator\IValidator;
-use syamgot\validator\LEValidator;
-use syamgot\validator\LTValidator;
-use syamgot\validator\NotEmptyValidator;
-use syamgot\validator\NotNullValidator;
-use syamgot\validator\RegularExpressionValidator;
-use syamgot\validator\StrLengthValidator;
-use syamgot\validator\Validator;
+namespace Tests;
 
+use syamgot\Validator\AlumValidator;
+use syamgot\Validator\DataTypeValidator;
+use syamgot\Validator\GEValidator;
+use syamgot\Validator\GTValidator;
+use syamgot\Validator\IValidator;
+use syamgot\Validator\LEValidator;
+use syamgot\Validator\LTValidator;
+use syamgot\Validator\NotEmptyValidator;
+use syamgot\Validator\NotNullValidator;
+use syamgot\Validator\RegularExpressionValidator;
+use syamgot\Validator\StrLengthValidator;
+use syamgot\Validator\Validator;
+use \stdClass;
 
 /**
  * 
@@ -20,7 +22,7 @@ use syamgot\validator\Validator;
  *  
  * @author syamgot
  */
-class validatorTest extends PHPUnit_Framework_TestCase {
+class validatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -42,15 +44,11 @@ class validatorTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * 
 	 * Enter description here ...
+	 * @expectedException Exception
 	 */
 	public function testAddValidatorException() {
-		try {
-			$v = new Validator();
-			$v->addValidator(new stdClass());
-		} catch (InvalidArgumentException $e) {
-			return;
-		}
-		$this->fail('期待通りの例外が発生しませんでした。');
+		$v = new Validator();
+		$v->addValidator(new stdClass());
 	}
 	
 	/**

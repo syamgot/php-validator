@@ -1,14 +1,16 @@
 <?php
 
-use syamgot\validator\GTValidator;
+namespace Tests;
+
+use syamgot\validator\NotEmptyValidator;
 
 
 /**
- * GTValidator unit test
+ * NotEmptyValidator unit test
  * 
  * @author syamgot
  */
-class GTValidatorTest extends PHPUnit_Framework_TestCase {
+class NotEmptyValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -17,19 +19,11 @@ class GTValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
     
 	/**
-	 * @dataProvider providerIsValid
+	 * @dataProvider providerTest
+	 * 
 	 */
-	public function testIsValid($min, $val, $res) {
-		self::$obj->setMin($min);
+	public function testIsValid($val, $res) {
 		$this->assertEquals(self::$obj->isValid($val), $res);
-	}
-	
-	/**
-	 * @dataProvider providerConstruct
-	 */
-	public function testConstruct($param, $val, $res) {
-		$v = new GTValidator($param);
-		$this->assertEquals($v->isValid($val), $res);
 	}
 	
 
@@ -43,7 +37,7 @@ class GTValidatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new GTValidator();
+		self::$obj = new NotEmptyValidator();
 	}
 	
 	/**
@@ -69,7 +63,7 @@ class GTValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
 	
 	/**
-	 * @var GTValidator
+	 * @var NotEmptyValidator
 	 */
 	protected static $obj;
 	
@@ -83,27 +77,19 @@ class GTValidatorTest extends PHPUnit_Framework_TestCase {
     /**
      * 
      */
-    public function providerIsValid() {
+    public function providerTest() {
     	return array(
-    		  array(5, 4, false)
-    		, array(5, 5, false)
-    		, array(5, 6, true)
-    		, array(0, -1, false)
-    		, array(0, 0, false)
-    	);
-    }
-    
-    /**
-     * 
-     */
-    public function providerConstruct() {
-    	return array(
-	    	  array(5, 4, false)
-	    	, array(5, 5, false)
-	    	, array(5, 6, true)
-	    	, array(array('min'=>5), 4, false)
-	    	, array(array('min'=>5), 5, false)
-	    	, array(array('min'=>5), 6, true)
+    		  array(false, false)
+    		, array(true, true)
+    		, array(0, false)
+    		, array(1, true)
+    		, array(0.0, false)
+    		, array(0.1, true)
+    		, array('', false)
+    		, array('hoge', true)
+    		, array(array(), false)
+    		, array(array('hoge'), true)
+    		, array(null, false)
     	);
     }
 

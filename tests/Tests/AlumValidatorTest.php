@@ -1,14 +1,16 @@
 <?php
 
-use syamgot\validator\LTValidator;
+namespace Tests;
+
+use syamgot\validator\AlumValidator;
 
 
 /**
- * LTValidator unit test
+ * AlumValidator unit test
  * 
  * @author syamgot
  */
-class LTValidatorTest extends PHPUnit_Framework_TestCase {
+class AlumValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -17,19 +19,11 @@ class LTValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
     
 	/**
-	 * @dataProvider providerIsValid
+	 * @dataProvider providerTest
+	 * 
 	 */
-	public function testIsValid($Max, $val, $res) {
-		self::$obj->setMax($Max);
+	public function testIsValid($val, $res) {
 		$this->assertEquals(self::$obj->isValid($val), $res);
-	}
-	
-	/**
-	 * @dataProvider providerConstruct
-	 */
-	public function testConstruct($param, $val, $res) {
-		$v = new LTValidator($param);
-		$this->assertEquals($v->isValid($val), $res);
 	}
 	
 
@@ -43,7 +37,7 @@ class LTValidatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new LTValidator();
+		self::$obj = new AlumValidator();
 	}
 	
 	/**
@@ -69,7 +63,7 @@ class LTValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
 	
 	/**
-	 * @var LTValidator
+	 * @var AlumValidator
 	 */
 	protected static $obj;
 	
@@ -83,27 +77,11 @@ class LTValidatorTest extends PHPUnit_Framework_TestCase {
     /**
      * 
      */
-    public function providerIsValid() {
+    public function providerTest() {
     	return array(
-    		  array(5, 4, true)
-    		, array(5, 5, false)
-    		, array(5, 6, false)
-    		, array(0, -1, true)
-    		, array(0, 0, false)
-    	);
-    }
-    
-    /**
-     * 
-     */
-    public function providerConstruct() {
-    	return array(
-	    	  array(5, 4, true)
-	    	, array(5, 5, false)
-	    	, array(5, 6, false)
-	    	, array(array('max'=>5), 4, true)
-	    	, array(array('max'=>5), 5, false)
-	    	, array(array('max'=>5), 6, false)
+    		  array('adifahi0208', true)
+    		, array('aidsfia((***!', false)
+    		, array('aaあああ', false)
     	);
     }
 

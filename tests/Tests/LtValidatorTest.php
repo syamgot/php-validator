@@ -1,14 +1,16 @@
 <?php
 
-use syamgot\validator\NotNullValidator;
+namespace Tests;
+
+use syamgot\validator\LTValidator;
 
 
 /**
- * NotNullValidator unit test
+ * LTValidator unit test
  * 
  * @author syamgot
  */
-class NotNullValidatorTest extends PHPUnit_Framework_TestCase {
+class LTValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/** **************************************************
 	*
@@ -17,11 +19,19 @@ class NotNullValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
     
 	/**
-	 * @dataProvider providerTest
-	 * 
+	 * @dataProvider providerIsValid
 	 */
-	public function testIsValid($val, $res) {
+	public function testIsValid($Max, $val, $res) {
+		self::$obj->setMax($Max);
 		$this->assertEquals(self::$obj->isValid($val), $res);
+	}
+	
+	/**
+	 * @dataProvider providerConstruct
+	 */
+	public function testConstruct($param, $val, $res) {
+		$v = new LTValidator($param);
+		$this->assertEquals($v->isValid($val), $res);
 	}
 	
 
@@ -35,7 +45,7 @@ class NotNullValidatorTest extends PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new NotNullValidator();
+		self::$obj = new LTValidator();
 	}
 	
 	/**
@@ -61,7 +71,7 @@ class NotNullValidatorTest extends PHPUnit_Framework_TestCase {
 	************************************************** */
 	
 	/**
-	 * @var NotNullValidator
+	 * @var LTValidator
 	 */
 	protected static $obj;
 	
@@ -75,13 +85,27 @@ class NotNullValidatorTest extends PHPUnit_Framework_TestCase {
     /**
      * 
      */
-    public function providerTest() {
+    public function providerIsValid() {
     	return array(
-    		  array('', true)
-    		, array(0, true)
-    		, array(0.0, true)
-    		, array(array(), true)
-    		, array(null, false)
+    		  array(5, 4, true)
+    		, array(5, 5, false)
+    		, array(5, 6, false)
+    		, array(0, -1, true)
+    		, array(0, 0, false)
+    	);
+    }
+    
+    /**
+     * 
+     */
+    public function providerConstruct() {
+    	return array(
+	    	  array(5, 4, true)
+	    	, array(5, 5, false)
+	    	, array(5, 6, false)
+	    	, array(array('max'=>5), 4, true)
+	    	, array(array('max'=>5), 5, false)
+	    	, array(array('max'=>5), 6, false)
     	);
     }
 
