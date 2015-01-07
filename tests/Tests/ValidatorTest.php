@@ -5,10 +5,10 @@ namespace Tests;
 use syamgot\Validator\AlumValidator;
 use syamgot\Validator\DataTypeValidator;
 use syamgot\Validator\GEValidator;
-use syamgot\Validator\GTValidator;
+use syamgot\Validator\GtValidator;
 use syamgot\Validator\IValidator;
-use syamgot\Validator\LEValidator;
-use syamgot\Validator\LTValidator;
+use syamgot\Validator\LeValidator;
+use syamgot\Validator\LtValidator;
 use syamgot\Validator\NotEmptyValidator;
 use syamgot\Validator\NotNullValidator;
 use syamgot\Validator\RegularExpressionValidator;
@@ -85,19 +85,19 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		    
     		, array(array(
 			    	  new GEValidator(array('min' => 0))
-			    	, new LEValidator(array('max' => 1))
+			    	, new LeValidator(array('max' => 1))
 		    	), 0, true)
     		, array(array(
 			    	  new GEValidator(array('min' => 0))
-			    	, new LEValidator(array('max' => 1))
+			    	, new LeValidator(array('max' => 1))
 		    	), 1, true)
     		, array(array(
 			    	  new GEValidator(array('min' => 0))
-			    	, new LEValidator(array('max' => 1))
+			    	, new LeValidator(array('max' => 1))
 		    	), 2, false)
 	    	, array(array(
 			    	  new GEValidator(array('min' => 0))
-			    	, new LEValidator(array('max' => 1))
+			    	, new LeValidator(array('max' => 1))
 		    	), -1, false)
 		    
 		    // 名前を指定して追加するパターン

@@ -9,16 +9,16 @@ namespace syamgot\validator;
  * @package validator
  * @author syamgot
  */
-class LTValidator implements IValidator {
+class LtValidator implements IValidator {
 
-	private $messageTmpl = "[LTValidator] it does not match. (%s)";
+	private $messageTmpl = "[LtValidator] it does not match. (%s)";
 
 	private $_max;
 	private $_val;
 
 	/**
 	 * 
-	 * 新しい LTValidator インスタンスを作成します.
+	 * 新しい LtValidator インスタンスを作成します.
 	 * 
 	 * @param mixed $param
 	 */

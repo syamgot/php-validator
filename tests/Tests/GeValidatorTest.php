@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use syamgot\validator\GEValidator;
+use syamgot\validator\GeValidator;
 
 
 /**
- * GEValidator unit test
+ * GeValidator unit test
  * 
  * @author syamgot
  */
-class GEValidatorTest extends \PHPUnit_Framework_TestCase {
+class GeValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
@@ -24,7 +24,7 @@ class GEValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerConstruct
 	 */
 	public function testConstruct($param, $val, $res) {
-		$v = new GEValidator($param);
+		$v = new GeValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
@@ -32,11 +32,11 @@ class GEValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new GEValidator();
+		self::$obj = new GeValidator();
 	}
 	
 	/**
-	 * @var GEValidator
+	 * @var GeValidator
 	 */
 	protected static $obj;
 	

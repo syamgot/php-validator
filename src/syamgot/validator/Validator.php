@@ -56,8 +56,8 @@ class Validator implements IValidator {
 	 * その他の値も、バリデートクラスに準じるように値を入れることで、引数とすることができます。
 	 * <code>
 	 * $validator = new Validator();
-	 * $validator->addValidator((array('name' => 'GE', 'min' => 0)));
-	 * $validator->addValidator((array('name' => 'LE', 'max' => 1)));
+	 * $validator->addValidator((array('name' => 'Ge', 'min' => 0)));
+	 * $validator->addValidator((array('name' => 'Le', 'max' => 1)));
 	 * if(!$validator->isValid(-1)) {
 	 * 	echo $validator->getMessage();
 	 * }

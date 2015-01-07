@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use syamgot\validator\GTValidator;
+use syamgot\validator\GtValidator;
 
 
 /**
- * GTValidator unit test
+ * GtValidator unit test
  * 
  * @author syamgot
  */
-class GTValidatorTest extends \PHPUnit_Framework_TestCase {
+class GtValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
@@ -24,7 +24,7 @@ class GTValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerConstruct
 	 */
 	public function testConstruct($param, $val, $res) {
-		$v = new GTValidator($param);
+		$v = new GtValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
@@ -32,11 +32,11 @@ class GTValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new GTValidator();
+		self::$obj = new GtValidator();
 	}
 	
 	/**
-	 * @var GTValidator
+	 * @var GtValidator
 	 */
 	protected static $obj;
 	

@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use syamgot\validator\LTValidator;
+use syamgot\validator\LtValidator;
 
 
 /**
- * LTValidator unit test
+ * LtValidator unit test
  * 
  * @author syamgot
  */
-class LTValidatorTest extends \PHPUnit_Framework_TestCase {
+class LtValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
@@ -24,7 +24,7 @@ class LTValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerConstruct
 	 */
 	public function testConstruct($param, $val, $res) {
-		$v = new LTValidator($param);
+		$v = new LtValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
@@ -32,11 +32,11 @@ class LTValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new LTValidator();
+		self::$obj = new LtValidator();
 	}
 	
 	/**
-	 * @var LTValidator
+	 * @var LtValidator
 	 */
 	protected static $obj;
 	

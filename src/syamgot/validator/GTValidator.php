@@ -9,16 +9,16 @@ namespace syamgot\Validator;
  * @package validator
  * @author syamgot
  */
-class GTValidator implements IValidator {
+class GtValidator implements IValidator {
 
-	private $messageTmpl = "[GTValidator] it does not match. (%s)";
+	private $messageTmpl = "[GtValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_val;
 
 	/**
 	 * 
-	 * 新しい GTValidator インスタンスを作成します.
+	 * 新しい GtValidator インスタンスを作成します.
 	 * 
 	 * @param mixed $param
 	 */

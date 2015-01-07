@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use syamgot\validator\LEValidator;
+use syamgot\validator\LeValidator;
 
 
 /**
- * LEValidator unit test
+ * LeValidator unit test
  * 
  * @author syamgot
  */
-class LEValidatorTest extends \PHPUnit_Framework_TestCase {
+class LeValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
@@ -24,7 +24,7 @@ class LEValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerConstruct
 	 */
 	public function testConstruct($param, $val, $res) {
-		$v = new LEValidator($param);
+		$v = new LeValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
@@ -32,11 +32,11 @@ class LEValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new LEValidator();
+		self::$obj = new LeValidator();
 	}
 	
 	/**
-	 * @var LEValidator
+	 * @var LeValidator
 	 */
 	protected static $obj;
 	

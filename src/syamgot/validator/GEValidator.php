@@ -8,16 +8,16 @@ namespace syamgot\Validator;
  * @package validator
  * @author syamgot
  */
-class GEValidator implements IValidator {
+class GeValidator implements IValidator {
 
-	private $messageTmpl = "[GEValidator] it does not match. (%s)";
+	private $messageTmpl = "[GeValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_val;
 
 	/**
 	 * 
-	 * 新しい GEValidator インスタンスを作成します.
+	 * 新しい GeValidator インスタンスを作成します.
 	 * 
 	 * @param mixed $param
 	 */
