@@ -16,10 +16,11 @@ class LengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerIsValid
 	 */
 	public function testIsValid($min, $max, $charset, $val, $res) {
-		self::$obj->setMin($min);
-		self::$obj->setMax($max);
-		self::$obj->setCharset($charset);
-		$this->assertEquals(self::$obj->isValid($val), $res);
+		$v = new LengthValidator();
+		$v->setMin($min);
+		$v->setMax($max);
+		$v->setCharset($charset);
+		$this->assertEquals($v->isValid($val), $res);
 	}
 	
 	/**
@@ -31,17 +32,13 @@ class LengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {
-		self::$obj = new LengthValidator();
-	}
-	
-	/**
-	 * @var LengthValidator
+	 * @dataProvider providerConstruct2
 	 */
-	protected static $obj;
-	
+	public function testConstruct2($min, $max, $charset, $val, $res) {
+		$v = new LengthValidator($min, $max);
+		$this->assertEquals($v->isValid($val), $res);
+	}
+
     /**
      * $min, $max, $charset, $val, $res
      */
@@ -66,12 +63,23 @@ class LengthValidatorTest extends \PHPUnit_Framework_TestCase {
      */
     public function providerConstruct() {
     	return array(
-	    	  array(array('min'=>5, 'max'=>10, 'charset'=>'utf-8'), 'あいうえおかきくけこ', true)
-	    	, array(array('min'=>5, 'max'=>10, 'charset'=>'utf-8'), 'あいうえ', false)
-	    	, array(array('min'=>5, 'max'=>10, 'charset'=>'utf-8'), 'あいうえおかきくけこさ', false)
+	    	  array(array('min'=>5, 'max'=>10, 'charset'=>'UTF-8'), 'あいうえおかきくけこ', true)
+	    	, array(array('min'=>5, 'max'=>10, 'charset'=>'UTF-8'), 'あいうえ', false)
+	    	, array(array('min'=>5, 'max'=>10, 'charset'=>'UTF-8'), 'あいうえおかきくけこさ', false)
     	);
     }
 
+    /**
+     * $param, $val, $res
+     */
+    public function providerConstruct2() {
+    	return array(
+	    	  array(5, 10,' UTF-8', 'あいうえおかきくけこ', true)
+	    	, array(5, 10,' UTF-8', 'あいうえ', false)
+	    	, array(5, 10,' UTF-8', 'あいうえおかきくけこさ', false)
+	    	, array(null, 10,' UTF-8', 'あいうえおかきくけこさ', false)
+    	);
+    }
 
 }
 

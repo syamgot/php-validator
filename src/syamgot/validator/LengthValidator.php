@@ -25,14 +25,30 @@ class LengthValidator implements IValidator {
 	 * 
 	 * 新しい LengthValidator インスタンスを作成します.
 	 * 
+	 * 
+	 * $param('min' = 0, 'max' => 10, 'charset' => 'UTF-8') 
+	 *  or 
+	 * $min, $max, $charset 
+	 * 
+	 * 
 	 * @param mixed $param
 	 */
-	public function __construct($params = null) {
-		if ($params === null) return;
-		
-		$this->setMin((isset($params['min'])) ? (int) $params['min'] : ~PHP_INT_MAX);
-		$this->setMax((isset($params['max'])) ? (int) $params['max'] : PHP_INT_MAX);
-		$this->setCharset((isset($params['charset'])) ? $params['charset'] : mb_internal_encoding());
+	public function __construct() {
+
+		$args = func_get_args();
+		if (count($args) === 0) return;
+
+		if (count($args) === 1 && is_array($args[0])) {
+			$params = $args[0];
+			$this->setMin((isset($params['min'])) ? (int) $params['min'] : 0);
+			$this->setMax((isset($params['max'])) ? (int) $params['max'] : PHP_INT_MAX);
+			$this->setCharset((isset($params['charset'])) ? $params['charset'] : mb_internal_encoding());
+		}
+		else {
+			$this->setMin((isset($args[0])) ? (int) $args[0] : 0);
+			$this->setMax((isset($args[1])) ? (int) $args[1] : PHP_INT_MAX);
+			$this->setCharset((isset($args[2])) ? $args[2] : mb_internal_encoding());
+		}
 		
 	}
 
@@ -45,16 +61,7 @@ class LengthValidator implements IValidator {
 		$this->_str = (string) $val;
 		$valid_state = true;
 		$len = mb_strlen($this->_str, $this->_harset);
-
-		if ($this->_min > 0 && $this->_min > $len) {
-			$valid_state = false;
-		}
-
-		if ($this->_max < $len) {
-			$valid_state = false;
-		}
-
-		return $valid_state;
+		return $this->_min <= $len && $this->_max >= $len;
 
 	}
 
