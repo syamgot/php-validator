@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use syamgot\validator\StrLengthValidator;
+use syamgot\validator\LengthValidator;
 
 
 /**
- * StrLengthValidator unit test
+ * LengthValidator unit test
  * 
  * @author syamgot
  */
-class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
+class LengthValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
@@ -26,7 +26,7 @@ class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerConstruct
 	 */
 	public function testConstruct($param, $val, $res) {
-		$v = new StrLengthValidator($param);
+		$v = new LengthValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
@@ -34,11 +34,11 @@ class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */	
 	public static function setUpBeforeClass() {
-		self::$obj = new StrLengthValidator();
+		self::$obj = new LengthValidator();
 	}
 	
 	/**
-	 * @var StrLengthValidator
+	 * @var LengthValidator
 	 */
 	protected static $obj;
 	

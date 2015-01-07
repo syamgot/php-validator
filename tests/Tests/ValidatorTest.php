@@ -12,7 +12,7 @@ use syamgot\Validator\LTValidator;
 use syamgot\Validator\NotEmptyValidator;
 use syamgot\Validator\NotNullValidator;
 use syamgot\Validator\RegularExpressionValidator;
-use syamgot\Validator\StrLengthValidator;
+use syamgot\Validator\LengthValidator;
 use syamgot\Validator\Validator;
 use \stdClass;
 
@@ -71,15 +71,15 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
     		
     		// クラスを生成して追加するパターン
     		  array(array(
-    				  new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
+    				  new LengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
     				, new AlumValidator()
     			), 'abcde12345', true)
     		, array(array(
-    				  new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
+    				  new LengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
     				, new AlumValidator()
     			), 'abcde12***', false)
 	    	, array(array(
-			    	  new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
+			    	  new LengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'utf-8'))
 			    	, new AlumValidator()
 		    	), 'abcde12あいう', false)
 		    
@@ -102,15 +102,15 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		    
 		    // 名前を指定して追加するパターン
     		, array(array(
-	    			  array('name' => 'StrLength', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
+	    			  array('name' => 'Length', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
 			    	, array('name' => 'Alum')
 		    	), 'abcde12345', true)
 	    	, array(array(
-	    			  array('name' => 'StrLength', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
+	    			  array('name' => 'Length', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
 			    	, array('name' => 'Alum')
 		    	), 'abcde12***', false)
 	    	, array(array(
-	    			  array('name' => 'StrLength', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
+	    			  array('name' => 'Length', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
 			    	, array('name' => 'Alum')
 		    	), 'abcde12あいう', false)
 		    	

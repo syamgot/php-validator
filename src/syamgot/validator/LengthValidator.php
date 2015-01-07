@@ -12,9 +12,9 @@ namespace syamgot\validator;
  * @author syamgot
  *
  */
-class StrLengthValidator implements IValidator {
+class LengthValidator implements IValidator {
 
-	private $messageTmpl = "[StrLengthValidator] it does not match. (%s)";
+	private $messageTmpl = "[LengthValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_max;
@@ -23,7 +23,7 @@ class StrLengthValidator implements IValidator {
 
 	/**
 	 * 
-	 * 新しい StrLengthValidator インスタンスを作成します.
+	 * 新しい LengthValidator インスタンスを作成します.
 	 * 
 	 * @param mixed $param
 	 */

@@ -11,7 +11,7 @@ use \InvalidArgumentException;
  * 他のバリデートクラスをセットして、一括でバリデート処理を行うことができます。
  * <code>
  * $validator = new Validator();
- * $validator->addValidator(new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'sjis')));
+ * $validator->addValidator(new LengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'sjis')));
  * $validator->addValidator(new AlumValidator());
  * if(!$validator->isValid('asdfzxcvqwer****')) {
  * 	echo $validator->getMessage();
