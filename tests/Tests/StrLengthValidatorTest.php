@@ -11,12 +11,6 @@ use syamgot\validator\StrLengthValidator;
  * @author syamgot
  */
 class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
-	
-	/** **************************************************
-	*
-	* Tests
-	*
-	************************************************** */
     
 	/**
 	 * @dataProvider providerIsValid
@@ -35,12 +29,6 @@ class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
 		$v = new StrLengthValidator($param);
 		$this->assertEquals($v->isValid($val), $res);
 	}
-
-	/** **************************************************
-	*
-	* setup and teardown
-	*
-	************************************************** */
 	
 	/**
 	 * 
@@ -50,38 +38,9 @@ class StrLengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * 
-	 */
-	protected function setUp() {}
-	
-	/**
-	 * 
-	 */
-	protected function tearDown() {}
-	
-	/**
-	 * 
-	 */
-	public static function tearDownAfterClass() {}
-	
-	
-	/** **************************************************
-	*
-	* Static Methods
-	*
-	************************************************** */
-	
-	/**
 	 * @var StrLengthValidator
 	 */
 	protected static $obj;
-	
-	
-	/** **************************************************
-	 * 
-	 * Data Providers
-	 * 
-	 ************************************************** */
 	
     /**
      * $min, $max, $charset, $val, $res

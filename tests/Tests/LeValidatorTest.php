@@ -11,12 +11,6 @@ use syamgot\validator\LEValidator;
  * @author syamgot
  */
 class LEValidatorTest extends \PHPUnit_Framework_TestCase {
-	
-	/** **************************************************
-	*
-	* Tests
-	*
-	************************************************** */
     
 	/**
 	 * @dataProvider providerIsValid
@@ -34,13 +28,6 @@ class LEValidatorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
-
-	/** **************************************************
-	*
-	* setup and teardown
-	*
-	************************************************** */
-	
 	/**
 	 * 
 	 */	
@@ -49,38 +36,9 @@ class LEValidatorTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * 
-	 */
-	protected function setUp() {}
-	
-	/**
-	 * 
-	 */
-	protected function tearDown() {}
-	
-	/**
-	 * 
-	 */
-	public static function tearDownAfterClass() {}
-	
-	
-	/** **************************************************
-	*
-	* Static Methods
-	*
-	************************************************** */
-	
-	/**
 	 * @var LEValidator
 	 */
 	protected static $obj;
-	
-	
-	/** **************************************************
-	 * 
-	 * Data Providers
-	 * 
-	 ************************************************** */
 	
     /**
      * 

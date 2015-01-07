@@ -11,12 +11,6 @@ use syamgot\validator\DataTypeValidator;
  * @author syamgot
  */
 class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
-	
-	/** **************************************************
-	*
-	* Tests
-	*
-	************************************************** */
     
 	/**
 	 * 
@@ -48,13 +42,6 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(self::$obj->isValid($val), $res);
 	}
 	
-
-	/** **************************************************
-	*
-	* setup and teardown
-	*
-	************************************************** */
-	
 	/**
 	 * 
 	 */	
@@ -63,38 +50,9 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * 
-	 */
-	protected function setUp() {}
-	
-	/**
-	 * 
-	 */
-	protected function tearDown() {}
-	
-	/**
-	 * 
-	 */
-	public static function tearDownAfterClass() {}
-	
-	
-	/** **************************************************
-	*
-	* Static Methods
-	*
-	************************************************** */
-	
-	/**
 	 * @var DataTypeValidator
 	 */
 	protected static $obj;
-	
-	
-	/** **************************************************
-	 * 
-	 * Data Providers
-	 * 
-	 ************************************************** */
 	
 	/**
 	 * 

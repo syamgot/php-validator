@@ -12,12 +12,6 @@ use syamgot\validator\utils\ValidatorTemplates;
  * @author syamgot
  */
 class ValidatorTemplatesTest extends \PHPUnit_Framework_TestCase {
-	
-	/** **************************************************
-	*
-	* Tests
-	*
-	************************************************** */
     
 	/**
 	 * @dataProvider providerInt
@@ -43,50 +37,10 @@ class ValidatorTemplatesTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
-	/** **************************************************
-	*
-	* setup and teardown
-	*
-	************************************************** */
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {}
-	
-	/**
-	 *
-	 */
-	protected function setUp() {}
-	
-	/**
-	 * 
-	 */
-	protected function tearDown() {}
-	
-	/**
-	 * 
-	 */
-	public static function tearDownAfterClass() {}
-	
-	
-	/** **************************************************
-	*
-	* Static Methods
-	*
-	************************************************** */
-	
 	/**
 	 * @var Validator
 	 */
 	protected static $obj;
-	
-	
-	/** **************************************************
-	 * 
-	 * Data Providers
-	 * 
-	 ************************************************** */
 	
     /**
      * 

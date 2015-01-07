@@ -11,12 +11,6 @@ use syamgot\validator\RegularExpressionValidator;
  * @author syamgot
  */
 class RegularExpressionValidatorTest extends \PHPUnit_Framework_TestCase {
-	
-	/** **************************************************
-	*
-	* Tests
-	*
-	************************************************** */
     
 	/**
 	 * @dataProvider providerTest
@@ -35,13 +29,6 @@ class RegularExpressionValidatorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals($v->isValid($val), $res);
 	}
 	
-
-	/** **************************************************
-	*
-	* setup and teardown
-	*
-	************************************************** */
-	
 	/**
 	 * 
 	 */	
@@ -50,38 +37,9 @@ class RegularExpressionValidatorTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * 
-	 */
-	protected function setUp() {}
-	
-	/**
-	 * 
-	 */
-	protected function tearDown() {}
-	
-	/**
-	 * 
-	 */
-	public static function tearDownAfterClass() {}
-	
-	
-	/** **************************************************
-	*
-	* Static Methods
-	*
-	************************************************** */
-	
-	/**
 	 * @var RegularExpressionValidator
 	 */
 	protected static $obj;
-	
-	
-	/** **************************************************
-	 * 
-	 * Data Providers
-	 * 
-	 ************************************************** */
 	
     /**
      * 

@@ -23,12 +23,6 @@ use \stdClass;
  * @author syamgot
  */
 class validatorTest extends \PHPUnit_Framework_TestCase {
-	
-	/** **************************************************
-	*
-	* Tests
-	*
-	************************************************** */
     
 	/**
 	 * @dataProvider providerIsValid
@@ -62,50 +56,10 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotNull($v->getValidator('Alum'));
 	}
 	
-	/** **************************************************
-	*
-	* setup and teardown
-	*
-	************************************************** */
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {}
-	
-	/**
-	 *
-	 */
-	protected function setUp() {}
-	
-	/**
-	 * 
-	 */
-	protected function tearDown() {}
-	
-	/**
-	 * 
-	 */
-	public static function tearDownAfterClass() {}
-	
-	
-	/** **************************************************
-	*
-	* Static Methods
-	*
-	************************************************** */
-	
 	/**
 	 * @var Validator
 	 */
 	protected static $obj;
-	
-	
-	/** **************************************************
-	 * 
-	 * Data Providers
-	 * 
-	 ************************************************** */
 	
     /**
      * $Validators, $value, $res
