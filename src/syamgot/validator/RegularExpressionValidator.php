@@ -13,10 +13,10 @@ use syamgot\validator\IValidator;
  */
 class RegularExpressionValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[RegularExpressionValidator] it does not match. (%s)";
+	private $errorMessageTmpl = "[RegularExpressionValidator] it does not match. (%s)";
 
 	private $_pattern;
-	private $_var;
+	private $val;
 
 	/**
 	 * 
@@ -38,8 +38,8 @@ class RegularExpressionValidator implements IValidator {
 	 */
 	public function isValid($val) {
 
-		$this->_var = (string) $val;
-		return preg_match($this->_pattern, $this->_var) > 0 ? true : false;
+		$this->val = (string) $val;
+		return preg_match($this->_pattern, $this->val) > 0 ? true : false;
 
 	}
 
@@ -50,7 +50,7 @@ class RegularExpressionValidator implements IValidator {
 	 * @return string 
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl, $this->_var) . "\n";
+		return sprintf($this->errorMessageTmpl, $this->val) . "\n";
 	}
 
 	/**

@@ -28,16 +28,16 @@ class Validator implements IValidator {
 	/**
 	 * @var array
 	 */
-	private $_validators;	
+	private $validators;	
 
 	/**
 	 * @var array
 	 */
-	private $_errorMessages;	
+	private $errorMessages;	
 
 	public function __construct() {
-		$this->_validators = array();	
-		$this->_errorMessages = array();	
+		$this->validators = array();	
+		$this->errorMessages = array();	
 	}
 
 	/**
@@ -75,9 +75,9 @@ class Validator implements IValidator {
 			unset($val['name']);
 			//require_once __DIR__ . "/$classname.php";
 			$classname = __NAMESPACE__."\\$classname";
-			$this->_validators[$classname] = new $classname($val);
+			$this->validators[$classname] = new $classname($val);
 		} else if ($val instanceof IValidator) {
-			$this->_validators[get_class($val)] = $val;
+			$this->validators[get_class($val)] = $val;
 		} else {
 			throw new InvalidArgumentException('引数は配列型か、IValidatorインタフェース実装したクラスでなければなりません.');
 		}
@@ -92,16 +92,20 @@ class Validator implements IValidator {
 	 */
 	public function getValidator($name) {
 		$name = __NAMESPACE__."\\$name"."Validator";
-		return isset($this->_validators[$name]) ? $this->_validators[$name] : null;
+		return isset($this->validators[$name]) ? $this->validators[$name] : null;
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public function isValid($val) {
 		$valid_state = true;
 
-		if (is_array($this->_validators)) {
-			foreach ($this->_validators as $Validator) {
+		if (is_array($this->validators)) {
+			foreach ($this->validators as $Validator) {
 				if (!$Validator->isValid($val)) {
-					array_push($this->_errorMessages, $Validator->getErrorMessage());
+					array_push($this->errorMessages, $Validator->getErrorMessage());
 					$valid_state = false;
 				}
 			}
@@ -114,12 +118,16 @@ class Validator implements IValidator {
 	 * 直近のエラーメッセージを配列で取得します.
 	 */
 	public function getErrorMessages() {
-		return $this->_errorMessages;
+		return $this->errorMessages;
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public function getErrorMessage() {
 		$msg = "";
-		foreach ($this->_errorMessages as $errmsg) {
+		foreach ($this->errorMessages as $errmsg) {
 			$msg .= $errmsg;
 		}
 		return $msg;

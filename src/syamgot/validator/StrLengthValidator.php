@@ -16,7 +16,7 @@ use syamgot\validator\IValidator;
  */
 class StrLengthValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[StrLengthValidator] it does not match. (%s)";
+	private $errorMessageTmpl = "[StrLengthValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_max;
@@ -67,7 +67,7 @@ class StrLengthValidator implements IValidator {
 	 * @return string
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl,  $this->_str) . "\n";
+		return sprintf($this->errorMessageTmpl,  $this->_str) . "\n";
 	}
 	
 	/**

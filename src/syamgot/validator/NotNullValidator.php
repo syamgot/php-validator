@@ -13,7 +13,7 @@ use syamgot\Validator\IValidator;
  */
 class NotNullValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[NotNullValidator] it does not match.";
+	private $errorMessageTmpl = "[NotNullValidator] it does not match.";
 
 	private $_val;
 
@@ -41,7 +41,7 @@ class NotNullValidator implements IValidator {
 	 * @return string
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl) . "\n";
+		return sprintf($this->errorMessageTmpl) . "\n";
 	}
 
 }

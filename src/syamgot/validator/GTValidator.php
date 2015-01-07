@@ -13,7 +13,7 @@ use syamgot\validator\IValidator;
  */
 class GTValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[GTValidator] it does not match. (%s)";
+	private $errorMessageTmpl = "[GTValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_val;
@@ -48,7 +48,7 @@ class GTValidator implements IValidator {
 	 * @return string 
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl, $this->_val) . "\n";
+		return sprintf($this->errorMessageTmpl, $this->_val) . "\n";
 	}
 	
 	/**

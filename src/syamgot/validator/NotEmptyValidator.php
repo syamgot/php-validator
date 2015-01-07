@@ -23,9 +23,9 @@ use syamgot\validator\IValidator;
  */
 class NotEmptyValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[NotEmptyValidator] it does not match. (%s)";
+	private $errorMessageTmpl = "[NotEmptyValidator] it does not match. (%s)";
 
-	private $_var;
+	private $val;
 
 	/**
 	 * 
@@ -41,20 +41,20 @@ class NotEmptyValidator implements IValidator {
 	 */
 	public function isValid($val) {
 
-		$this->_var = $val;
+		$this->val = $val;
 		$valid_state = true;
 
-		if (is_bool($this->_var) && $this->_var === false) {
+		if (is_bool($this->val) && $this->val === false) {
 			$valid_state = false;
-		} else if (is_int($this->_var) && $this->_var === 0) {
+		} else if (is_int($this->val) && $this->val === 0) {
 			$valid_state = false;
-		} else if (is_float($this->_var) && $this->_var == 0) {
+		} else if (is_float($this->val) && $this->val == 0) {
 			$valid_state = false;
-		} else if (is_string($this->_var) && $this->_var === '') {
+		} else if (is_string($this->val) && $this->val === '') {
 			$valid_state = false;
-		} else if (is_array($this->_var) && count($this->_var) === 0) {
+		} else if (is_array($this->val) && count($this->val) === 0) {
 			$valid_state = false;
-		} else if (is_null($this->_var) && $this->_var === null) {
+		} else if (is_null($this->val) && $this->val === null) {
 			$valid_state = false;
 		}
 
@@ -69,7 +69,7 @@ class NotEmptyValidator implements IValidator {
 	 * @return string
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl, $this->_var) . "\n";
+		return sprintf($this->errorMessageTmpl, $this->val) . "\n";
 	}
 
 }

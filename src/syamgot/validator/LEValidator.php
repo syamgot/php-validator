@@ -13,7 +13,7 @@ use syamgot\validator\IValidator;
  */
 class LEValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[LEValidator] it does not match. (%s)";
+	private $errorMessageTmpl = "[LEValidator] it does not match. (%s)";
 
 	private $_max;
 	private $_val;
@@ -48,7 +48,7 @@ class LEValidator implements IValidator {
 	 * @return string
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl, $this->_val) . "\n";
+		return sprintf($this->errorMessageTmpl, $this->_val) . "\n";
 	}
 	
 	/**

@@ -15,9 +15,9 @@ use \Exception;
  */
 class DataTypeValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[DataTypeValidator] it does not match. (%s, %s)";
+	private $errorMessageTmpl = "[DataTypeValidator] it does not match. (%s, %s)";
 
-	private $_var;
+	private $val;
 	private $_dataType;
 	private $_types = array('int', 'integer', 'float', 'string', 'array', 'bool', 'null');
 	
@@ -59,7 +59,7 @@ class DataTypeValidator implements IValidator {
 	 */
 	public function isValid($val) {
 
-		$this->_var = $val;
+		$this->val = $val;
 		$ereg = '/^'.$this->_dataType.'$/i';
 		
 		if (preg_match($ereg, 'int') || preg_match($ereg, 'integer')) {
@@ -87,7 +87,7 @@ class DataTypeValidator implements IValidator {
 	 * @return string 
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl, $this->_var, $this->_dataType) . "\n";
+		return sprintf($this->errorMessageTmpl, $this->val, $this->_dataType) . "\n";
 	}
 
 }

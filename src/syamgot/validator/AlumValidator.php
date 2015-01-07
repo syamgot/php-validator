@@ -12,9 +12,9 @@ use syamgot\Validator\IValidator;
  */
 class AlumValidator implements IValidator {
 
-	private $_errorMessageTmpl = "[AlumValidator] it does not match. (%s)";
+	private $errorMessageTmpl = "[AlumValidator] it does not match. (%s)";
 
-	private $_var;
+	private $val;
 
 	/**
 	 * 
@@ -29,9 +29,9 @@ class AlumValidator implements IValidator {
 	 */
 	public function isValid($val) {
 
-		$this->_var = (string) $val;
+		$this->val = (string) $val;
 		$valid_state = true;
-		$valid_state = (preg_match("/[^a-zA-Z_0-9]+/", $this->_var)) ? false : true;
+		$valid_state = (preg_match("/[^a-zA-Z_0-9]+/", $this->val)) ? false : true;
 		return $valid_state;
 
 	}
@@ -43,7 +43,7 @@ class AlumValidator implements IValidator {
 	 * @return string 
 	 */
 	public function getErrorMessage() {
-		return sprintf($this->_errorMessageTmpl, $this->_var) . "\n";
+		return sprintf($this->errorMessageTmpl, $this->val) . "\n";
 	}
 
 }
