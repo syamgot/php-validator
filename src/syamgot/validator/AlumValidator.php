@@ -2,8 +2,6 @@
 
 namespace syamgot\Validator;
 
-use syamgot\Validator\IValidator;
-
 /**
  * アルファベットと数字のみを含む文字列かどうかを判定するバリデートクラスです.
  * 
@@ -12,7 +10,7 @@ use syamgot\Validator\IValidator;
  */
 class AlumValidator implements IValidator {
 
-	private $errorMessageTmpl = "[AlumValidator] it does not match. (%s)";
+	private $messageTmpl = "[AlumValidator] it does not match. (%s)";
 
 	private $val;
 
@@ -42,8 +40,8 @@ class AlumValidator implements IValidator {
 	 * 
 	 * @return string 
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl, $this->val) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl, $this->val) . "\n";
 	}
 
 }

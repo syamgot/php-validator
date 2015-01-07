@@ -2,8 +2,6 @@
 
 namespace syamgot\validator;
 
-use syamgot\validator\IValidator;
-
 
 /**
  * 値が空ではないかを判定するバリデートクラスです.
@@ -23,7 +21,7 @@ use syamgot\validator\IValidator;
  */
 class NotEmptyValidator implements IValidator {
 
-	private $errorMessageTmpl = "[NotEmptyValidator] it does not match. (%s)";
+	private $messageTmpl = "[NotEmptyValidator] it does not match. (%s)";
 
 	private $val;
 
@@ -68,8 +66,8 @@ class NotEmptyValidator implements IValidator {
 	 *
 	 * @return string
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl, $this->val) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl, $this->val) . "\n";
 	}
 
 }

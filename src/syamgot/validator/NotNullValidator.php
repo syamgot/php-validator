@@ -2,8 +2,6 @@
 
 namespace syamgot\Validator;
 
-use syamgot\Validator\IValidator;
-
 
 /**
  * 値が null ではないかを判定するバリデートクラスです.
@@ -13,7 +11,7 @@ use syamgot\Validator\IValidator;
  */
 class NotNullValidator implements IValidator {
 
-	private $errorMessageTmpl = "[NotNullValidator] it does not match.";
+	private $messageTmpl = "[NotNullValidator] it does not match.";
 
 	private $_val;
 
@@ -40,8 +38,8 @@ class NotNullValidator implements IValidator {
 	 *
 	 * @return string
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl) . "\n";
 	}
 
 }

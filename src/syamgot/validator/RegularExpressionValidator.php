@@ -2,8 +2,6 @@
 
 namespace syamgot\Validator;
 
-use syamgot\validator\IValidator;
-
 
 /**
  * 正規表現で判定するバリデートクラスです.
@@ -13,7 +11,7 @@ use syamgot\validator\IValidator;
  */
 class RegularExpressionValidator implements IValidator {
 
-	private $errorMessageTmpl = "[RegularExpressionValidator] it does not match. (%s)";
+	private $messageTmpl = "[RegularExpressionValidator] it does not match. (%s)";
 
 	private $_pattern;
 	private $val;
@@ -49,8 +47,8 @@ class RegularExpressionValidator implements IValidator {
 	 * 
 	 * @return string 
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl, $this->val) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl, $this->val) . "\n";
 	}
 
 	/**

@@ -2,8 +2,6 @@
 
 namespace syamgot\validator;
 
-use syamgot\validator\IValidator;
-
 
 /**
  * 文字列の長さを判定するバリデートクラスです.
@@ -16,7 +14,7 @@ use syamgot\validator\IValidator;
  */
 class StrLengthValidator implements IValidator {
 
-	private $errorMessageTmpl = "[StrLengthValidator] it does not match. (%s)";
+	private $messageTmpl = "[StrLengthValidator] it does not match. (%s)";
 
 	private $_min;
 	private $_max;
@@ -66,8 +64,8 @@ class StrLengthValidator implements IValidator {
 	 *
 	 * @return string
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl,  $this->_str) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl,  $this->_str) . "\n";
 	}
 	
 	/**

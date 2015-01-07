@@ -2,7 +2,6 @@
 
 namespace syamgot\Validator;
 
-use syamgot\validator\IValidator;
 use \InvalidArgumentException;
 
 /**
@@ -15,7 +14,7 @@ use \InvalidArgumentException;
  * $validator->addValidator(new StrLengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'sjis')));
  * $validator->addValidator(new AlumValidator());
  * if(!$validator->isValid('asdfzxcvqwer****')) {
- * 	echo $validator->getErrorMessage();
+ * 	echo $validator->getMessage();
  * }
  * </code>
  * 
@@ -33,11 +32,11 @@ class Validator implements IValidator {
 	/**
 	 * @var array
 	 */
-	private $errorMessages;	
+	private $messages;	
 
 	public function __construct() {
 		$this->validators = array();	
-		$this->errorMessages = array();	
+		$this->messages = array();	
 	}
 
 	/**
@@ -60,7 +59,7 @@ class Validator implements IValidator {
 	 * $validator->addValidator((array('name' => 'GE', 'min' => 0)));
 	 * $validator->addValidator((array('name' => 'LE', 'max' => 1)));
 	 * if(!$validator->isValid(-1)) {
-	 * 	echo $validator->getErrorMessage();
+	 * 	echo $validator->getMessage();
 	 * }
 	 * </code>
 	 * 
@@ -105,7 +104,7 @@ class Validator implements IValidator {
 		if (is_array($this->validators)) {
 			foreach ($this->validators as $Validator) {
 				if (!$Validator->isValid($val)) {
-					array_push($this->errorMessages, $Validator->getErrorMessage());
+					array_push($this->messages, $Validator->getMessage());
 					$valid_state = false;
 				}
 			}
@@ -117,17 +116,17 @@ class Validator implements IValidator {
 	/**
 	 * 直近のエラーメッセージを配列で取得します.
 	 */
-	public function getErrorMessages() {
-		return $this->errorMessages;
+	public function getMessages() {
+		return $this->messages;
 	}
 
 	/**
 	 *
 	 *
 	 */
-	public function getErrorMessage() {
+	public function getMessage() {
 		$msg = "";
-		foreach ($this->errorMessages as $errmsg) {
+		foreach ($this->messages as $errmsg) {
 			$msg .= $errmsg;
 		}
 		return $msg;

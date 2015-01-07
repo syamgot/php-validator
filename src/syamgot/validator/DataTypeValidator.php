@@ -2,7 +2,6 @@
 
 namespace syamgot\Validator;
 
-use syamgot\Validator\IValidator;
 use \Exception;
 
 /**
@@ -15,7 +14,7 @@ use \Exception;
  */
 class DataTypeValidator implements IValidator {
 
-	private $errorMessageTmpl = "[DataTypeValidator] it does not match. (%s, %s)";
+	private $messageTmpl = "[DataTypeValidator] it does not match. (%s, %s)";
 
 	private $val;
 	private $_dataType;
@@ -86,8 +85,8 @@ class DataTypeValidator implements IValidator {
 	 * 
 	 * @return string 
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl, $this->val, $this->_dataType) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl, $this->val, $this->_dataType) . "\n";
 	}
 
 }

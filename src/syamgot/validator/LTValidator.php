@@ -2,8 +2,6 @@
 
 namespace syamgot\validator;
 
-use syamgot\Validator\IValidator;
-
 
 /**
  * 指定された数値より小さいかを判定するバリデートクラスです.
@@ -13,7 +11,7 @@ use syamgot\Validator\IValidator;
  */
 class LTValidator implements IValidator {
 
-	private $errorMessageTmpl = "[LTValidator] it does not match. (%s)";
+	private $messageTmpl = "[LTValidator] it does not match. (%s)";
 
 	private $_max;
 	private $_val;
@@ -47,8 +45,8 @@ class LTValidator implements IValidator {
 	 *
 	 * @return string
 	 */
-	public function getErrorMessage() {
-		return sprintf($this->errorMessageTmpl, $this->_val) . "\n";
+	public function getMessage() {
+		return sprintf($this->messageTmpl, $this->_val) . "\n";
 	}
 
 	/**
