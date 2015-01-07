@@ -3,6 +3,9 @@
 namespace syamgot\Validator;
 
 use \InvalidArgumentException;
+use \ReflectionClass;
+use \ReflectionMethod;
+use \ReflectionException;
 
 /**
  * 
@@ -11,7 +14,7 @@ use \InvalidArgumentException;
  * 他のバリデートクラスをセットして、一括でバリデート処理を行うことができます。
  * <code>
  * $validator = new Validator();
- * $validator->addValidator(new LengthValidator(array('min' => 5, 'max' => 10, 'charset' => 'sjis')));
+ * $validator->addValidator(new LengthValidator(array(5, 10, 'sjis')));
  * $validator->addValidator(new AlumValidator());
  * if(!$validator->isValid('asdfzxcvqwer****')) {
  * 	echo $validator->getMessage();
@@ -42,7 +45,6 @@ class Validator implements IValidator {
 	/**
 	 * 新しいバリデートクラスを追加します.
 	 *
-	 * 追加の方法は、二通りあります。
 	 * 
 	 * IValidator の実装クラスであれば、そのまま追加します。
 	 * <code>
@@ -50,14 +52,13 @@ class Validator implements IValidator {
 	 * $validator->addValidator(new AlumValidator());
 	 * </code>
 	 * 
-	 * 適切な添え字で生成した連想配列で、インスタンスを生成して追加することもできます。
-	 * クラス名は、Validator_ 以下の文字になります(例:AlumValidator -> Alum)。
-	 * 連想配列に 'name' と添え字をつけた値にクラス名を指定して、利用します。
-	 * その他の値も、バリデートクラスに準じるように値を入れることで、引数とすることができます。
+	 * Validator名を指定してインスタンスを追加できます.
+	 * Validator名は、Validator 前の文字になります(例:AlumValidator -> Alum)。
+	 * その他の値も、Validatorにのコンストラクタに準じて指定して、引数とすることができます。
 	 * <code>
 	 * $validator = new Validator();
-	 * $validator->addValidator((array('name' => 'Ge', 'min' => 0)));
-	 * $validator->addValidator((array('name' => 'Le', 'max' => 1)));
+	 * $validator->addValidator('Ge', 0)));
+	 * $validator->addValidator('Le', 1)));
 	 * if(!$validator->isValid(-1)) {
 	 * 	echo $validator->getMessage();
 	 * }
@@ -68,20 +69,37 @@ class Validator implements IValidator {
 	 * @param IValidator 
 	 * @throws InvalidArgumentException
 	 */
-	public function addValidator($val) {
-		if (is_array($val)) {
-			$classname = $val['name'].'Validator';
-			unset($val['name']);
-			//require_once __DIR__ . "/$classname.php";
-			$classname = __NAMESPACE__."\\$classname";
-			$this->validators[$classname] = new $classname($val);
-		} else if ($val instanceof IValidator) {
-			$this->validators[get_class($val)] = $val;
-		} else {
-			throw new InvalidArgumentException('引数は配列型か、IValidatorインタフェース実装したクラスでなければなりません.');
+	public function addValidator() {
+		try {
+
+			$args = func_get_args();
+	
+			if (count($args) === 0) {
+				throw new InvalidArgumentException('引数が不正です.');
+			}
+			else if (count($args) === 1 && is_object($args[0])) {
+				if ($args[0] instanceof IValidator) {
+					$this->validators[get_class($args[0])] = $args[0];
+				}
+				else {
+					throw new InvalidArgumentException('引数が不正です.');
+				}
+			}
+			else {
+				$classname = ucfirst(array_shift($args)).'Validator';
+				$classname = __NAMESPACE__."\\$classname";
+	            $class = new ReflectionClass($classname);
+	            $instance = $class->newInstanceArgs($args);
+				$this->validators[$classname] = $instance;
+			}
+			return true;
+		}
+		catch (ReflectionException $e) {
+			echo $e->getMessage();
+			return false;
 		}
 	}
-	
+
 	/**
 	 * 名前を指定して、バリデートクラスのインスタンスを取得します.
 	 * 
@@ -100,7 +118,7 @@ class Validator implements IValidator {
 	 */
 	public function isValid($val) {
 		$valid_state = true;
-
+		$this->messages = array();
 		if (is_array($this->validators)) {
 			foreach ($this->validators as $Validator) {
 				if (!$Validator->isValid($val)) {
@@ -130,6 +148,23 @@ class Validator implements IValidator {
 			$msg .= $errmsg;
 		}
 		return $msg;
+	}
+
+	/**
+	 *
+	 *
+	 */
+	public function __call($name, $arguments) {
+		try {
+			$m = new ReflectionMethod(get_class(), 'addValidator');
+			array_unshift($arguments,$name);
+			$m->invokeArgs($this, $arguments);
+		}
+		catch (Exception $e) {
+			echo $e->getMessage();
+			return false;
+		}
+		return $this;
 	}
 
 }

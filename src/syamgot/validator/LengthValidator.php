@@ -22,34 +22,20 @@ class LengthValidator implements IValidator {
 	private $_str;
 
 	/**
-	 * 
 	 * 新しい LengthValidator インスタンスを作成します.
 	 * 
 	 * 
-	 * $param('min' = 0, 'max' => 10, 'charset' => 'UTF-8') 
-	 *  or 
-	 * $min, $max, $charset 
-	 * 
-	 * 
-	 * @param mixed $param
+	 * @param int $min 
+	 * @param int $max
+	 * @param string $charset 
 	 */
-	public function __construct() {
-
-		$args = func_get_args();
-		if (count($args) === 0) return;
-
-		if (count($args) === 1 && is_array($args[0])) {
-			$params = $args[0];
-			$this->setMin((isset($params['min'])) ? (int) $params['min'] : 0);
-			$this->setMax((isset($params['max'])) ? (int) $params['max'] : PHP_INT_MAX);
-			$this->setCharset((isset($params['charset'])) ? $params['charset'] : mb_internal_encoding());
+	public function __construct($min, $max, $charset = null) {
+		if ($charset === null) {
+			$charset = mb_internal_encoding();
 		}
-		else {
-			$this->setMin((isset($args[0])) ? (int) $args[0] : 0);
-			$this->setMax((isset($args[1])) ? (int) $args[1] : PHP_INT_MAX);
-			$this->setCharset((isset($args[2])) ? $args[2] : mb_internal_encoding());
-		}
-		
+		$this->setMin($min);
+		$this->setMax($max);
+		$this->setCharset($charset);
 	}
 
 	/**

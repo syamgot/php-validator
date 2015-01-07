@@ -21,13 +21,8 @@ class RegularExpressionValidator implements IValidator {
 	 * 新しい RegularExpressionValidator インスタンスを作成します.
 	 * 
 	 */
-	public function __construct($param = null) {
-		if ($param === null) return;
-		
-		$val = is_array($param) && isset($param['pattern'])
-			? (string) $param['pattern']
-			: (string) $param;
-		$this->setPattern($val);
+	public function __construct($pattern) {
+		$this->setPattern($pattern);
 	}
 
 	/**

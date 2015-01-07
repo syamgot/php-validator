@@ -20,14 +20,10 @@ class LtValidator implements IValidator {
 	 * 
 	 * 新しい LtValidator インスタンスを作成します.
 	 * 
-	 * @param mixed $param
+	 * @param int $max
 	 */
-	public function __construct($param = null) {
-		if ($param === null) return;
-		$val = is_array($param) && isset($param['max'])
-			? (int) $param['max']
-			: (int) $param;
-		$this->setMax($val);
+	public function __construct($max) {
+		$this->setMax((int) $max);
 	}
 
 	/**

@@ -24,18 +24,10 @@ class DataTypeValidator implements IValidator {
 	 * 
 	 * 新しい DataTypeValidator インスタンスを作成します.
 	 * 
-	 * @param mixed $param
+	 * @param string $type
 	 */
-	public function __construct($param = null) {
-		if ($param === null) return;
-		
-		$dataType = '';
-		if (is_array($param)) {
-			$dataType = (isset($param['type'])) ? (string) $param['type'] : $dataType;
-		} else {
-			$dataType = (string) $param;
-		}
-		$this->setDataType($dataType);
+	public function __construct($type) {
+		$this->setDataType((string) $type);
 	}
 	
 	/**
@@ -46,8 +38,9 @@ class DataTypeValidator implements IValidator {
 	 */
 	public function setDataType($dataType) {
 		
-		if (!in_array($dataType, $this->_types)) 
+		if (!in_array($dataType, $this->_types)) {
 			throw new Exception(sprintf('it is an incorrect value. (%s)' , $dataType));
+		}
 		
 		$this->_dataType = $dataType;
 	}

@@ -20,14 +20,10 @@ class GtValidator implements IValidator {
 	 * 
 	 * 新しい GtValidator インスタンスを作成します.
 	 * 
-	 * @param mixed $param
+	 * @param int $min
 	 */
-	public function __construct($param = null) {
-		if ($param === null) return;
-		$val = is_array($param) && isset($param['min'])
-			? (int) $param['min']
-			: (int) $param;
-		$this->setMin($val);
+	public function __construct($min) {
+		$this->setMin((int) $min);
 	}
 
 	/**

@@ -18,7 +18,8 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @expectedException Exception
 	 */
 	public function testException() {
-		self::$obj->setDataType('');
+		$obj = new DataTypeValidator('int');
+		$obj->setDataType('');
 	}
 
 	/**
@@ -28,7 +29,8 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testException
 	 */
 	public function testSetDataType($dataType) {
-		self::$obj->setDataType($dataType);
+		$obj = new DataTypeValidator('int');
+		$obj->setDataType($dataType);
 	}
 	
 	/**
@@ -38,21 +40,10 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @depends  testSetDataType
 	 */
 	public function testIsValid($dataType, $val, $res) {
-		self::$obj->setDataType($dataType);
-		$this->assertEquals(self::$obj->isValid($val), $res);
+		$obj = new DataTypeValidator('int');
+		$obj->setDataType($dataType);
+		$this->assertEquals($obj->isValid($val), $res);
 	}
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {
-		self::$obj = new DataTypeValidator();
-	}
-	
-	/**
-	 * @var DataTypeValidator
-	 */
-	protected static $obj;
 	
 	/**
 	 * 

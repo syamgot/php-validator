@@ -15,30 +15,10 @@ class LeValidatorTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider providerIsValid
 	 */
-	public function testIsValid($Max, $val, $res) {
-		self::$obj->setMax($Max);
-		$this->assertEquals(self::$obj->isValid($val), $res);
+	public function testIsValid($max, $val, $res) {
+		$obj = new LeValidator($max);
+		$this->assertEquals($obj->isValid($val), $res);
 	}
-	
-	/**
-	 * @dataProvider providerConstruct
-	 */
-	public function testConstruct($param, $val, $res) {
-		$v = new LeValidator($param);
-		$this->assertEquals($v->isValid($val), $res);
-	}
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {
-		self::$obj = new LeValidator();
-	}
-	
-	/**
-	 * @var LeValidator
-	 */
-	protected static $obj;
 	
     /**
      * 
@@ -52,21 +32,6 @@ class LeValidatorTest extends \PHPUnit_Framework_TestCase {
     		, array(0, 0, true)
     	);
     }
-    
-    /**
-     * 
-     */
-    public function providerConstruct() {
-    	return array(
-	    	  array(5, 4, true)
-	    	, array(5, 5, true)
-	    	, array(5, 6, false)
-	    	, array(array('max'=>5), 4, true)
-	    	, array(array('max'=>5), 5, true)
-	    	, array(array('max'=>5), 6, false)
-    	);
-    }
-
 
 }
 
