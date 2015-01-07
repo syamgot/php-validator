@@ -84,19 +84,19 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		    	), 'abcde12あいう', false)
 		    
     		, array(array(
-			    	  new GEValidator(array('min' => 0))
+			    	  new GeValidator(array('min' => 0))
 			    	, new LeValidator(array('max' => 1))
 		    	), 0, true)
     		, array(array(
-			    	  new GEValidator(array('min' => 0))
+			    	  new GeValidator(array('min' => 0))
 			    	, new LeValidator(array('max' => 1))
 		    	), 1, true)
     		, array(array(
-			    	  new GEValidator(array('min' => 0))
+			    	  new GeValidator(array('min' => 0))
 			    	, new LeValidator(array('max' => 1))
 		    	), 2, false)
 	    	, array(array(
-			    	  new GEValidator(array('min' => 0))
+			    	  new GeValidator(array('min' => 0))
 			    	, new LeValidator(array('max' => 1))
 		    	), -1, false)
 		    
@@ -115,20 +115,20 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		    	), 'abcde12あいう', false)
 		    	
 	    	, array(array(
-	    			  array('name' => 'GE', 'min' => 0)
-			    	, array('name' => 'LE', 'max' => 1)
+	    			  array('name' => 'Ge', 'min' => 0)
+			    	, array('name' => 'Le', 'max' => 1)
 		    	), 0, true)
 	    	, array(array(
-	    			  array('name' => 'GE', 'min' => 0)
-			    	, array('name' => 'LE', 'max' => 1)
+	    			  array('name' => 'Ge', 'min' => 0)
+			    	, array('name' => 'Le', 'max' => 1)
 		    	), 1, true)
 	    	, array(array(
-	    			  array('name' => 'GE', 'min' => 0)
-			    	, array('name' => 'LE', 'max' => 1)
+	    			  array('name' => 'Ge', 'min' => 0)
+			    	, array('name' => 'Le', 'max' => 1)
 		    	), 2, false)
     		, array(array(
-    				  array('name' => 'GE', 'min' => 0)
-			    	, array('name' => 'LE', 'max' => 1)
+    				  array('name' => 'Ge', 'min' => 0)
+			    	, array('name' => 'Le', 'max' => 1)
     			), -1, false)
     			
 	    	, array(array(
