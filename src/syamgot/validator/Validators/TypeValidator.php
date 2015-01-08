@@ -3,7 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-use syamgot\Validator\Exception\DataTypeException;
+use syamgot\Validator\Exception\TypeException;
 use \InvalidArgumentException;
 
 /**
@@ -14,7 +14,7 @@ use \InvalidArgumentException;
  * @package validator
  * @author syamgot
  */
-class DataTypeValidator implements IValidator {
+class TypeValidator implements IValidator {
 
 	private $val;
 	private $type;
@@ -22,7 +22,7 @@ class DataTypeValidator implements IValidator {
 	
 	/**
 	 * 
-	 * 新しい DataTypeValidator インスタンスを作成します.
+	 * 新しい TypeValidator インスタンスを作成します.
 	 * 
 	 * @param string $type
 	 */
@@ -67,7 +67,7 @@ class DataTypeValidator implements IValidator {
 		}
 
 		if ($state === false) {
-			throw new DataTypeException($this->val, $this->type);
+			throw new TypeException($this->val, $this->type);
 			return false;
 		}
 		return true;

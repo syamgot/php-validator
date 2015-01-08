@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use syamgot\validator\Validators\DataTypeValidator;
-use syamgot\Validator\Exception\DataTypeException;
+use syamgot\validator\Validators\TypeValidator;
+use syamgot\Validator\Exception\TypeException;
 
 /**
- * DataTypeValidator unit test
+ * TypeValidator unit test
  * 
  * @author syamgot
  */
-class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
+class TypeValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * 
@@ -18,7 +18,7 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @expectedException InvalidArgumentException
 	 */
 	public function testException() {
-		$obj = new DataTypeValidator('int');
+		$obj = new TypeValidator('int');
 		$obj->setDataType('');
 	}
 
@@ -29,7 +29,7 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testException
 	 */
 	public function testSetDataType($type) {
-		$obj = new DataTypeValidator('int');
+		$obj = new TypeValidator('int');
 		$obj->setDataType($type);
 	}
 	
@@ -42,10 +42,10 @@ class DataTypeValidatorTest extends \PHPUnit_Framework_TestCase {
 	public function testIsValid($type, $val, $res) {
 		$state = $res === false;
 		try {
-			$obj = new DataTypeValidator($type);
+			$obj = new TypeValidator($type);
 			$state = $obj->isValid($val);
 		}
-		catch (DataTypeException $e) {
+		catch (TypeException $e) {
 			//echo $e->getMessage()."\n";
 			$state = false;
 		}

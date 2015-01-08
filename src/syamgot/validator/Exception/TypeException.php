@@ -8,7 +8,7 @@ use \InvalidArgumentException;
  * 
  * 
  */
-class DataTypeException extends AbValidatorsException {
+class TypeException extends AbValidatorsException {
 
 	/**
 	 * 
