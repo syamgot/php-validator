@@ -1,6 +1,8 @@
 <?php
 
-namespace syamgot\Validator;
+namespace syamgot\Validator\Validators;
+
+use syamgot\Validator\IValidator;
 
 /**
  * 指定された数値より、大きいか等しい数値かを判定するバリデートクラスです.

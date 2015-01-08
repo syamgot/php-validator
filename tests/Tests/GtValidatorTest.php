@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use syamgot\validator\GtValidator;
+use syamgot\validator\Validators\GtValidator;
 
 
 /**

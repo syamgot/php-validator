@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use syamgot\validator\LengthValidator;
+use syamgot\Validator\Validators\LengthValidator;
 
 
 /**

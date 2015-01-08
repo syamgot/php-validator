@@ -1,6 +1,9 @@
 <?php
 
-namespace syamgot\Validator;
+namespace syamgot\Validator\Validators;
+
+use syamgot\Validator\IValidator;
+use syamgot\Validator\Exception\AlumException;
 
 /**
  * アルファベットと数字のみを含む文字列かどうかを判定するバリデートクラスです.
@@ -28,9 +31,11 @@ class AlumValidator implements IValidator {
 	public function isValid($val) {
 
 		$this->val = (string) $val;
-		$valid_state = true;
-		$valid_state = (preg_match("/[^a-zA-Z_0-9]+/", $this->val)) ? false : true;
-		return $valid_state;
+		$state = ctype_alnum($this->val);
+		if ($state === false) {
+			throw new AlumException($this->val);
+		}
+		return $state;
 
 	}
 

@@ -2,17 +2,17 @@
 
 namespace Tests;
 
-use syamgot\Validator\AlumValidator;
-use syamgot\Validator\DataTypeValidator;
-use syamgot\Validator\GEValidator;
-use syamgot\Validator\GtValidator;
-use syamgot\Validator\IValidator;
-use syamgot\Validator\LeValidator;
-use syamgot\Validator\LtValidator;
-use syamgot\Validator\NotEmptyValidator;
-use syamgot\Validator\NotNullValidator;
-use syamgot\Validator\RegularExpressionValidator;
-use syamgot\Validator\LengthValidator;
+use syamgot\Validator\Validators\AlumValidator;
+use syamgot\Validator\Validators\DataTypeValidator;
+use syamgot\Validator\Validators\GEValidator;
+use syamgot\Validator\Validators\GtValidator;
+use syamgot\Validator\Validators\IValidator;
+use syamgot\Validator\Validators\LeValidator;
+use syamgot\Validator\Validators\LtValidator;
+use syamgot\Validator\Validators\NotEmptyValidator;
+use syamgot\Validator\Validators\NotNullValidator;
+use syamgot\Validator\Validators\RegularExpressionValidator;
+use syamgot\Validator\Validators\LengthValidator;
 use syamgot\Validator\Validator;
 use \stdClass;
 use \ReflectionMethod;

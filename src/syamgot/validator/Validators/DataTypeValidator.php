@@ -1,7 +1,8 @@
 <?php
 
-namespace syamgot\Validator;
+namespace syamgot\Validator\Validators;
 
+use syamgot\Validator\IValidator;
 use \Exception;
 
 /**

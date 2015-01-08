@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use syamgot\validator\RegularExpressionValidator;
+use syamgot\validator\Validators\RegularExpressionValidator;
 
 
 /**

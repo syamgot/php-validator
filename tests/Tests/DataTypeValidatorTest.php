@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use syamgot\validator\DataTypeValidator;
+use syamgot\validator\Validators\DataTypeValidator;
 
 
 /**

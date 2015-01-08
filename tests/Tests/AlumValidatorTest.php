@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use syamgot\validator\AlumValidator;
+use syamgot\Validator\Validators\AlumValidator;
 
 
 /**

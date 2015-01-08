@@ -1,6 +1,9 @@
 <?php
 
-namespace syamgot\validator;
+namespace syamgot\validator\Validators;
+
+use syamgot\Validator\IValidator;
+use syamgot\Validator\Exception\LengthException;
 
 
 /**
@@ -16,10 +19,10 @@ class LengthValidator implements IValidator {
 
 	private $messageTmpl = "[LengthValidator] it does not match. (%s)";
 
-	private $_min;
-	private $_max;
-	private $_harset;
-	private $_str;
+	private $min;
+	private $max;
+	private $charset;
+	private $val;
 
 	/**
 	 * 新しい LengthValidator インスタンスを作成します.
@@ -44,11 +47,17 @@ class LengthValidator implements IValidator {
 	 */
 	public function isValid($val) {
 
-		$this->_str = (string) $val;
-		$valid_state = true;
-		$len = mb_strlen($this->_str, $this->_harset);
-		return $this->_min <= $len && $this->_max >= $len;
-
+		$this->val = (string) $val;
+		$len = mb_strlen($this->val, $this->charset);
+		if ($this->min > $len) {
+			throw new LengthException($this->val, $this->min, $this->max, LengthException::LOWER);
+			return false;
+		}
+		else if ($this->max < $len) {
+			throw new LengthException($this->val, $this->min, $this->max, LengthException::GREATER);
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -58,7 +67,7 @@ class LengthValidator implements IValidator {
 	 * @return string
 	 */
 	public function getMessage() {
-		return sprintf($this->messageTmpl,  $this->_str) . "\n";
+		return sprintf($this->messageTmpl,  $this->val) . "\n";
 	}
 	
 	/**
@@ -67,7 +76,7 @@ class LengthValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setMin($val) {
-		$this->_min = (int) $val;
+		$this->min = (int) $val;
 	}
 	
 	/**
@@ -76,7 +85,7 @@ class LengthValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setMax($val) {
-		$this->_max = (int) $val;
+		$this->max = (int) $val;
 	}
 
 	/**
@@ -85,7 +94,7 @@ class LengthValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setCharset($val) {
-		$this->_harset = (string) $val;
+		$this->charset = (string) $val;
 	}
 	
 }
