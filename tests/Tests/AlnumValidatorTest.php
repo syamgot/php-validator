@@ -2,16 +2,16 @@
 
 namespace Tests;
 
-use syamgot\validator\Validators\AlumValidator;
-use syamgot\Validator\Exception\AlumException;
+use syamgot\validator\Validators\AlnumValidator;
+use syamgot\Validator\Exception\AlnumException;
 
 
 /**
- * AlumValidator unit test
+ * AlnumValidator unit test
  * 
  * @author syamgot
  */
-class AlumValidatorTest extends \PHPUnit_Framework_TestCase {
+class AlnumValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerTest
@@ -20,10 +20,10 @@ class AlumValidatorTest extends \PHPUnit_Framework_TestCase {
 	public function testIsValid($val, $res) {
 		$state = $res === false;
 		try {
-			$obj = new AlumValidator();
+			$obj = new AlnumValidator();
 			$state = $obj->isValid($val);
 		}
-		catch (AlumException $e) {
+		catch (AlnumException $e) {
 			$state = false;
 		}
 		$this->assertEquals($state, $res);

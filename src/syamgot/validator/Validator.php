@@ -18,7 +18,7 @@ use \InvalidArgumentException;
  * <code>
  * $validator = new Validator();
  * $validator->addValidator(new LengthValidator(array(5, 10, 'sjis')));
- * $validator->addValidator(new AlumValidator());
+ * $validator->addValidator(new AlnumValidator());
  * if(!$validator->isValid('asdfzxcvqwer****')) {
  * 	echo $validator->getMessage();
  * }
@@ -42,11 +42,11 @@ class Validator implements IValidator {
 	 * IValidator の実装クラスであれば、そのまま追加します。
 	 * <code>
 	 * $validator = new Validator();
-	 * $validator->addValidator(new AlumValidator());
+	 * $validator->addValidator(new AlnumValidator());
 	 * </code>
 	 * 
 	 * Validator名を指定してインスタンスを追加できます.
-	 * Validator名は、Validator 前の文字になります(例:AlumValidator -> Alum)。
+	 * Validator名は、Validator 前の文字になります(例:AlnumValidator -> Alnum)。
 	 * その他の値も、Validatorにのコンストラクタに準じて指定して、引数とすることができます。
 	 * <code>
 	 * $validator = new Validator();
@@ -156,7 +156,7 @@ class Validator implements IValidator {
 
 	/**
 	 *
-	 *
+	 * @throws ValidatorException
 	 */
 	public function __call($name, $arguments) {
 		try {
@@ -165,8 +165,7 @@ class Validator implements IValidator {
 			$m->invokeArgs($this, $arguments);
 		}
 		catch (Exception $e) {
-			echo $e->getMessage();
-			return false;
+			throw new ValidatorException($e->getMessage());
 		}
 		return $this;
 	}

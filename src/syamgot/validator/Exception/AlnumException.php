@@ -6,7 +6,7 @@ namespace syamgot\Validator\Exception;
  * 
  * 
  */
-class AlumException extends AbValidatorsException {
+class AlnumException extends AbValidatorsException {
 
 	/**
 	 * 

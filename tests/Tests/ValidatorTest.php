@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use syamgot\Validator\Validators\AlumValidator;
+use syamgot\Validator\Validators\AlnumValidator;
 use syamgot\Validator\Validators\DataTypeValidator;
 use syamgot\Validator\Validators\GEValidator;
 use syamgot\Validator\Validators\GtValidator;
@@ -29,9 +29,23 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * 
 	 */
+	public function testCallException() {
+		$this->markTestSkipped('どうハンドリングしたらいいのか');
+		try {
+			$v = new Validator();
+			$v->hoge();
+		}
+		catch (ValidatorException $e) {
+			$this->assertTrue(true);
+		}
+	}
+
+	/**
+	 * 
+	 */
 	public function testAddValidatorChain() {
 		$v = new Validator();
-		$v->alum()->length(3,5,'UTF-8');
+		$v->Alnum()->length(3,5,'UTF-8');
 		$this->assertFalse($v->isValid('ab', false));
 		$this->assertFalse($v->isValid('abcdef', false));
 		$this->assertTrue($v->isValid('abc', false));
@@ -114,9 +128,9 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetValidator() {
 		$v = new Validator();
-		$this->assertNull($v->getValidator('Alum'));
-		$v->addValidator(new AlumValidator());
-		$this->assertNotNull($v->getValidator('Alum'));
+		$this->assertNull($v->getValidator('Alnum'));
+		$v->addValidator(new AlnumValidator());
+		$this->assertNotNull($v->getValidator('Alnum'));
 	}
 	
 	/**
@@ -134,19 +148,19 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
     		// クラスを生成して追加するパターン
     		  array(array(
     				  new LengthValidator(5, 10, 'utf-8')
-    				, new AlumValidator()
+    				, new AlnumValidator()
     			), 'abcde12345', true)
     		, array(array(
     				  new LengthValidator(5, 10, 'utf-8')
-    				, new AlumValidator()
+    				, new AlnumValidator()
     			), 'abcde12***', false)
 	    	, array(array(
 			    	  new LengthValidator(5, 10, 'utf-8')
-			    	, new AlumValidator()
+			    	, new AlnumValidator()
 		    	), 'abcde12あいう', false)
 	    	, array(array(
 			    	  new LengthValidator(5, 8, 'utf-8')
-			    	, new AlumValidator()
+			    	, new AlnumValidator()
 		    	), 'abcde12あいう', false)
 		    
     		, array(array(
@@ -177,15 +191,15 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		    // 名前を指定して追加するパターン
     		  array(array(
 	    			  array('Length', 5, 10, 'utf-8')
-			    	, array('Alum')
+			    	, array('Alnum')
 			))
 	    	, array(array(
 	    			  array('name' => 'Length', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
-			    	, array('name' => 'Alum')
+			    	, array('name' => 'Alnum')
 			))
 	    	, array(array(
 	    			  array('name' => 'Length', 'min' => 5, 'max' => 10, 'charset' => 'utf-8')
-			    	, array('name' => 'Alum')
+			    	, array('name' => 'Alnum')
 			))
 		    	
 	    	, array(array(

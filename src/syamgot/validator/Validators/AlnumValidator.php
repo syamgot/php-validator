@@ -3,7 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-use syamgot\Validator\Exception\AlumException;
+use syamgot\Validator\Exception\AlnumException;
 
 /**
  * アルファベットと数字のみを含む文字列かどうかを判定するバリデートクラスです.
@@ -11,15 +11,15 @@ use syamgot\Validator\Exception\AlumException;
  * @package validator
  * @author syamgot
  */
-class AlumValidator implements IValidator {
+class AlnumValidator implements IValidator {
 
-	private $messageTmpl = "[AlumValidator] it does not match. (%s)";
+	private $messageTmpl = "[AlnumValidator] it does not match. (%s)";
 
 	private $val;
 
 	/**
 	 * 
-	 * 新しい AlumValidator インスタンスを作成します.
+	 * 新しい AlnumValidator インスタンスを作成します.
 	 * 
 	 */
 	public function __construct() {}
@@ -33,7 +33,7 @@ class AlumValidator implements IValidator {
 		$this->val = (string) $val;
 		$state = ctype_alnum($this->val);
 		if ($state === false) {
-			throw new AlumException($this->val);
+			throw new AlnumException($this->val);
 		}
 		return $state;
 
