@@ -170,6 +170,17 @@ class Validator implements IValidator {
 		return $this;
 	}
 
+	/**
+	 *
+	 * @throws ValidatorException
+	 */
+	static public function __callStatic($name, $arguments) {
+		$validator = new static();
+		return $validator->__call($name, $arguments);
+	}
+
 }
+
+
 
 

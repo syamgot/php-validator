@@ -25,6 +25,27 @@ use \ReflectionMethod;
  * @author syamgot
  */
 class validatorTest extends \PHPUnit_Framework_TestCase {
+
+	/**
+	 * 
+	 */
+	public function testCallStatic() {
+		Validator::alnum()->length(3,5)->isValid('ab', false);
+		Validator::type('int')->isValid('ab', false);
+	}
+	
+	/**
+	 * 
+	 */
+	public function testIsValidException() {
+		try {
+			$v = new Validator();
+			$v->alnum()->length(3,5)->isValid('abcdef');
+		}
+		catch (ValidatorException $e){
+			$this->assertTrue(true);
+		}
+	}
     
 	/**
 	 * 
