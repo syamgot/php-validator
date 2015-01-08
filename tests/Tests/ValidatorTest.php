@@ -30,22 +30,20 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */
 	public function testAddValidatorChain() {
-/*
 		$v = new Validator();
 		$v->alum()->length(3,5,'UTF-8');
-		$this->assertFalse($v->isValid('ab'));
-		$this->assertFalse($v->isValid('abcdef'));
-		$this->assertTrue($v->isValid('abc'));
-		$this->assertTrue($v->isValid('abcde'));
-		$this->assertFalse($v->isValid('+_-'));
+		$this->assertFalse($v->isValid('ab', false));
+		$this->assertFalse($v->isValid('abcdef', false));
+		$this->assertTrue($v->isValid('abc', false));
+		$this->assertTrue($v->isValid('abcde', false));
+		$this->assertFalse($v->isValid('+_-', false));
 
 		$v = new Validator();
 		$v->length(3,5,'UTF-8');
-		$this->assertFalse($v->isValid('あい'));
-		$this->assertFalse($v->isValid('あいうえおか'));
-		$this->assertTrue($v->isValid('あいう'));
-		$this->assertTrue($v->isValid('あいうえお'));
-*/				
+		$this->assertFalse($v->isValid('あい', false));
+		$this->assertFalse($v->isValid('あいうえおか', false));
+		$this->assertTrue($v->isValid('あいう', false));
+		$this->assertTrue($v->isValid('あいうえお', false));
 	}
 
 	/**

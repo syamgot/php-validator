@@ -121,8 +121,12 @@ class Validator implements IValidator {
 	/**
 	 *
 	 *
+	 * @param mixed $val チェックする値
+	 * @param boolean $throw エラーが出た時に例外を発行しない
+	 * @throw ValidatorException チェックでエラーが出た時
+	 * @return boolean
 	 */
-	public function isValid($val) {
+	public function isValid($val, $throw = true) {
 
 		$exception = null;
 
@@ -141,7 +145,9 @@ class Validator implements IValidator {
 		}
 
 		if ($exception !== null) {
-			throw $exception;
+			if ($throw === true) {
+				throw $exception;
+			}
 			return false;
 		}
 
