@@ -3,6 +3,7 @@
 namespace Tests;
 
 use syamgot\validator\Validators\GeValidator;
+use syamgot\Validator\Exception\GeException;
 
 
 /**
@@ -16,8 +17,15 @@ class GeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerIsValid
 	 */
 	public function testIsValid($min, $val, $res) {
-		$obj = new GeValidator($min);
-		$this->assertEquals($obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new GeValidator($min);
+			$state = $obj->isValid($val);
+		}
+		catch (GeException $e) {
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
 	
     /**

@@ -3,7 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-
+use syamgot\Validator\Exception\LeException;
 
 /**
  * 指定された数値より小さいか等しいかを判定するバリデートクラスです.
@@ -13,10 +13,8 @@ use syamgot\Validator\IValidator;
  */
 class LeValidator implements IValidator {
 
-	private $messageTmpl = "[LeValidator] it does not match. (%s)";
-
-	private $_max;
-	private $_val;
+	private $max;
+	private $val;
 
 	/**
 	 * 
@@ -33,18 +31,12 @@ class LeValidator implements IValidator {
 	 * @see IValidator::isValid()
 	 */
 	public function isValid($val) {
-		$this->_val = (int) $val;
-		return ($this->_val <= $this->_max) ? true : false;
-	}
-	
-	/**
-	 *
-	 * 直近のエラーメッセージを返します。
-	 *
-	 * @return string
-	 */
-	public function getMessage() {
-		return sprintf($this->messageTmpl, $this->_val) . "\n";
+		$this->val = (int) $val;
+		if ($this->val > $this->max) {
+			throw new LeException($this->val, $this->max);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -53,7 +45,7 @@ class LeValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setMax($val) {
-		$this->_max = (int) $val;
+		$this->max = (int) $val;
 	}
 
 }

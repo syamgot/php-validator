@@ -3,6 +3,7 @@
 namespace Tests;
 
 use syamgot\validator\Validators\LeValidator;
+use syamgot\Validator\Exception\LeException;
 
 
 /**
@@ -16,8 +17,15 @@ class LeValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerIsValid
 	 */
 	public function testIsValid($max, $val, $res) {
-		$obj = new LeValidator($max);
-		$this->assertEquals($obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new LeValidator($max);
+			$state = $obj->isValid($val);
+		}
+		catch (LeException $e) {
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
 	
     /**

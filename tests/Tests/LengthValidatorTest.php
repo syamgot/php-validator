@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use syamgot\Validator\Validators\LengthValidator;
-
+use syamgot\validator\Validators\LengthValidator;
+use syamgot\Validator\Exception\LengthException;
 
 /**
  * LengthValidator unit test
@@ -16,11 +16,19 @@ class LengthValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerIsValid
 	 */
 	public function testIsValid($min, $max, $charset, $val, $res) {
-		$v = new LengthValidator($min, $max, $charset);
-		$v->setMin($min);
-		$v->setMax($max);
-		$v->setCharset($charset);
-		$this->assertEquals($v->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new LengthValidator($min, $max, $charset);
+			$obj->setMin($min);
+			$obj->setMax($max);
+			$obj->setCharset($charset);
+			$state = $obj->isValid($val);
+		}
+		catch (LengthException $e) {
+			//echo $e->getMessage();
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
 
     /**

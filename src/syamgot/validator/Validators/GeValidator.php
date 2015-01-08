@@ -3,6 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
+use syamgot\Validator\Exception\GeException;
 
 /**
  * 指定された数値より、大きいか等しい数値かを判定するバリデートクラスです.
@@ -12,10 +13,8 @@ use syamgot\Validator\IValidator;
  */
 class GeValidator implements IValidator {
 
-	private $messageTmpl = "[GeValidator] it does not match. (%s)";
-
-	private $_min;
-	private $_val;
+	private $min;
+	private $val;
 
 	/**
 	 * 
@@ -32,18 +31,12 @@ class GeValidator implements IValidator {
 	 * @see IValidator::isValid()
 	 */
 	public function isValid($val) {
-		$this->_val = (int) $val;
-		return ($this->_val >= $this->_min) ? true : false;
-	}
-
-	/**
-	 * 
-	 * 直近のエラーメッセージを返します。
-	 * 
-	 * @return string 
-	 */
-	public function getMessage() {
-		return sprintf($this->messageTmpl, $this->_val) . "\n";
+		$this->val = (int) $val;
+		if ($this->val < $this->min) {
+			throw new GeException($this->val, $this->min);
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -52,7 +45,7 @@ class GeValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setMin($val) {
-		$this->_min = (int) $val;
+		$this->min = (int) $val;
 	}
 
 }

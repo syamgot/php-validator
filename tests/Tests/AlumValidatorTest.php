@@ -2,7 +2,8 @@
 
 namespace Tests;
 
-use syamgot\Validator\Validators\AlumValidator;
+use syamgot\validator\Validators\AlumValidator;
+use syamgot\Validator\Exception\AlumException;
 
 
 /**
@@ -17,21 +18,17 @@ class AlumValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */
 	public function testIsValid($val, $res) {
-		$this->assertEquals(self::$obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new AlumValidator();
+			$state = $obj->isValid($val);
+		}
+		catch (AlumException $e) {
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {
-		self::$obj = new AlumValidator();
-	}
-	
-	/**
-	 * @var AlumValidator
-	 */
-	protected static $obj;
-	
+
     /**
      * 
      */

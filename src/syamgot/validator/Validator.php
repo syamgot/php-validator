@@ -2,10 +2,14 @@
 
 namespace syamgot\Validator;
 
-use \InvalidArgumentException;
+use syamgot\Validator\Exception\AbValidatorsException;
 use \ReflectionClass;
 use \ReflectionMethod;
+
+use syamgot\Validator\Exception\ValidatorException;
 use \ReflectionException;
+use \ErrorException;
+use \InvalidArgumentException;
 
 /**
  * 
@@ -30,17 +34,7 @@ class Validator implements IValidator {
 	/**
 	 * @var array
 	 */
-	private $validators;	
-
-	/**
-	 * @var array
-	 */
-	private $messages;	
-
-	public function __construct() {
-		$this->validators = array();	
-		$this->messages = array();	
-	}
+	private $validators = array();
 
 	/**
 	 * 新しいバリデートクラスを追加します.
@@ -67,7 +61,7 @@ class Validator implements IValidator {
 	 * 既に同じバリデートクラスのインスタンスが追加されている場合は、上書きします。
 	 * 
 	 * @param IValidator 
-	 * @throws InvalidArgumentException
+	 * @throws ValidatorException
 	 */
 	public function addValidator() {
 		try {
@@ -86,8 +80,12 @@ class Validator implements IValidator {
 				}
 			}
 			else {
-				$classname = ucfirst(array_shift($args)).'Validator';
-				$classname = __NAMESPACE__."\\$classname";
+				$classname = ucfirst((string) array_shift($args));
+				if ($classname === '') {
+					throw new InvalidArgumentException('引数が不正です.');
+				}	
+				$classname = $classname.'Validator';
+				$classname = 'syamgot\Validator\Validators\\'.$classname;
 	            $class = new ReflectionClass($classname);
 	            $instance = $class->newInstanceArgs($args);
 				$this->validators[$classname] = $instance;
@@ -95,7 +93,15 @@ class Validator implements IValidator {
 			return true;
 		}
 		catch (ReflectionException $e) {
-			echo $e->getMessage();
+			throw new ValidatorException($e->getMessage());
+			return false;
+		}
+		catch (ErrorException $e) {
+			throw new ValidatorException($e->getMessage());
+			return false;
+		}
+		catch (InvalidArgumentException $e) {
+			throw new ValidatorException($e->getMessage());
 			return false;
 		}
 	}
@@ -108,7 +114,8 @@ class Validator implements IValidator {
 	 * @param string $name
 	 */
 	public function getValidator($name) {
-		$name = __NAMESPACE__."\\$name"."Validator";
+		$name = ucfirst($name).'Validator';
+		$name = 'syamgot\Validator\Validators\\'.$name;
 		return isset($this->validators[$name]) ? $this->validators[$name] : null;
 	}
 
@@ -117,37 +124,29 @@ class Validator implements IValidator {
 	 *
 	 */
 	public function isValid($val) {
-		$valid_state = true;
-		$this->messages = array();
+
+		$exception = null;
+
 		if (is_array($this->validators)) {
 			foreach ($this->validators as $Validator) {
-				if (!$Validator->isValid($val)) {
-					array_push($this->messages, $Validator->getMessage());
-					$valid_state = false;
+				try {
+					$Validator->isValid($val);
+				}
+				catch (AbValidatorsException $e) {
+					if ($exception === null) {
+						$exception = new ValidatorException('validation error accrued.');
+					}
+					$exception->addException($e);
 				}
 			}
 		}
 
-		return $valid_state;
-	}
-
-	/**
-	 * 直近のエラーメッセージを配列で取得します.
-	 */
-	public function getMessages() {
-		return $this->messages;
-	}
-
-	/**
-	 *
-	 *
-	 */
-	public function getMessage() {
-		$msg = "";
-		foreach ($this->messages as $errmsg) {
-			$msg .= $errmsg;
+		if ($exception !== null) {
+			throw $exception;
+			return false;
 		}
-		return $msg;
+
+		return true;
 	}
 
 	/**

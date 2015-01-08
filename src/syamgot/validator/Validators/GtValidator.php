@@ -3,7 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-
+use syamgot\Validator\Exception\GtException;
 
 /**
  * 指定された数値より大きいかを判定するバリデートクラスです.
@@ -13,10 +13,8 @@ use syamgot\Validator\IValidator;
  */
 class GtValidator implements IValidator {
 
-	private $messageTmpl = "[GtValidator] it does not match. (%s)";
-
-	private $_min;
-	private $_val;
+	private $min;
+	private $val;
 
 	/**
 	 * 
@@ -33,18 +31,12 @@ class GtValidator implements IValidator {
 	 * @see IValidator::isValid()
 	 */
 	public function isValid($val) {
-		$this->_val = (int) $val;
-		return ($this->_val > $this->_min) ? true : false;
-	}
-
-	/**
-	 * 
-	 * 直近のエラーメッセージを返します。
-	 * 
-	 * @return string 
-	 */
-	public function getMessage() {
-		return sprintf($this->messageTmpl, $this->_val) . "\n";
+		$this->val = (int) $val;
+		if ($this->val <= $this->min) {
+			throw new GtException($this->val, $this->min);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -53,7 +45,7 @@ class GtValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setMin($val) {
-		$this->_min = (int) $val;
+		$this->min = (int) $val;
 	}
 }
 

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use syamgot\validator\Validators\RegularExpressionValidator;
+use syamgot\Validator\Exception\RegularExpressionException;
 
 
 /**
@@ -17,8 +18,16 @@ class RegularExpressionValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */
 	public function testIsValid($val, $pattern, $res) {
-		$obj = new RegularExpressionValidator($pattern);
-		$this->assertEquals($obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new RegularExpressionValidator($pattern);
+			$state = $obj->isValid($val);
+		}
+		catch (RegularExpressionException $e) {
+			//echo $e->getMessage()."\n";
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
 	
     /**

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use syamgot\validator\Validators\NotNullValidator;
+use syamgot\Validator\Exception\NotNullException;
 
 
 /**
@@ -17,20 +18,16 @@ class NotNullValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */
 	public function testIsValid($val, $res) {
-		$this->assertEquals(self::$obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new NotNullValidator();
+			$state = $obj->isValid($val);
+		}
+		catch (NotNullException $e) {
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {
-		self::$obj = new NotNullValidator();
-	}
-	
-	/**
-	 * @var NotNullValidator
-	 */
-	protected static $obj;
 	
     /**
      * 

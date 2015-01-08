@@ -3,6 +3,7 @@
 namespace Tests;
 
 use syamgot\Validator\Validators\NotEmptyValidator;
+use syamgot\Validator\Exception\NotEmptyException;
 
 
 /**
@@ -17,20 +18,16 @@ class NotEmptyValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */
 	public function testIsValid($val, $res) {
-		$this->assertEquals(self::$obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new NotEmptyValidator();
+			$state = $obj->isValid($val);
+		}
+		catch (NotEmptyException $e) {
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
-	
-	/**
-	 * 
-	 */	
-	public static function setUpBeforeClass() {
-		self::$obj = new NotEmptyValidator();
-	}
-	
-	/**
-	 * @var NotEmptyValidator
-	 */
-	protected static $obj;
 	
     /**
      * 

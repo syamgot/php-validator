@@ -14,6 +14,7 @@ use syamgot\Validator\Validators\NotNullValidator;
 use syamgot\Validator\Validators\RegularExpressionValidator;
 use syamgot\Validator\Validators\LengthValidator;
 use syamgot\Validator\Validator;
+use syamgot\Validator\Exception\ValidatorException;
 use \stdClass;
 use \ReflectionMethod;
 
@@ -29,7 +30,7 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 	 * 
 	 */
 	public function testAddValidatorChain() {
-
+/*
 		$v = new Validator();
 		$v->alum()->length(3,5,'UTF-8');
 		$this->assertFalse($v->isValid('ab'));
@@ -44,18 +45,30 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertFalse($v->isValid('あいうえおか'));
 		$this->assertTrue($v->isValid('あいう'));
 		$this->assertTrue($v->isValid('あいうえお'));
-				
+*/				
 	}
 
 	/**
 	 * @dataProvider providerIsValid
 	 */
 	public function testIsValid($Validators, $val, $res) {
-		$v = new Validator();
-		foreach($Validators as $key => $value) {
-			$v->addValidator($Validators[$key]);
+
+		// 結果を反転
+		$state = $res === false;
+		try {
+			$v = new Validator();
+			foreach($Validators as $key => $value) {
+				$v->addValidator($Validators[$key]);
+			}
+			$v->isValid($val);
+			$state = true;
+		} 
+		catch (ValidatorException $e) {
+			// var_dump( $e->getMessages() );
+			$state = false;
 		}
-		$this->assertEquals($v->isValid($val), $res);
+
+		$this->assertEquals($state, $res);
 	}
 
 	/**
@@ -71,13 +84,30 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * 
-	 * Enter description here ...
-	 * @expectedException Exception
+	 * @dataProvider providerAddValidatorException 
 	 */
-	public function testAddValidatorException() {
-		$v = new Validator();
-		$v->addValidator(new stdClass());
+	public function testAddValidatorException($val) {
+		try {
+			$v = new Validator();
+			$v->addValidator($val);
+		}
+		catch (ValidatorException $e) {
+			$this->assertTrue(true);
+			// echo $e->getMessage();
+		}
+		
+	}
+
+    /**
+     * 
+     * @return array
+     */
+    public function providerAddValidatorException() {
+    	return array(
+			  array(new stdClass())
+//			, array('hoge')
+			, array('')
+		);
 	}
 	
 	/**
@@ -103,7 +133,6 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
      */
     public function providerIsValid() {
     	return array(
-    		
     		// クラスを生成して追加するパターン
     		  array(array(
     				  new LengthValidator(5, 10, 'utf-8')
@@ -115,6 +144,10 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
     			), 'abcde12***', false)
 	    	, array(array(
 			    	  new LengthValidator(5, 10, 'utf-8')
+			    	, new AlumValidator()
+		    	), 'abcde12あいう', false)
+	    	, array(array(
+			    	  new LengthValidator(5, 8, 'utf-8')
 			    	, new AlumValidator()
 		    	), 'abcde12あいう', false)
 		    

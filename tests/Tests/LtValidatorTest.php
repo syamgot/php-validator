@@ -3,7 +3,7 @@
 namespace Tests;
 
 use syamgot\validator\Validators\LtValidator;
-
+use syamgot\Validator\Exception\LtException;
 
 /**
  * LtValidator unit test
@@ -16,8 +16,15 @@ class LtValidatorTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider providerIsValid
 	 */
 	public function testIsValid($max, $val, $res) {
-		$obj = new LtValidator($max);
-		$this->assertEquals($obj->isValid($val), $res);
+		$state = $res === false;
+		try {
+			$obj = new LtValidator($max);
+			$state = $obj->isValid($val);
+		}
+		catch (LtException $e) {
+			$state = false;
+		}
+		$this->assertEquals($state, $res);
 	}
 	
     /**

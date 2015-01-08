@@ -3,7 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-
+use syamgot\Validator\Exception\NotNullException;
 
 /**
  * 値が null ではないかを判定するバリデートクラスです.
@@ -13,35 +13,19 @@ use syamgot\Validator\IValidator;
  */
 class NotNullValidator implements IValidator {
 
-	private $messageTmpl = "[NotNullValidator] it does not match.";
-
-	private $_val;
-
-	/**
-	 * 
-	 * 新しい NotNullValidator インスタンスを作成します.
-	 * 
-	 * @param mixed $param
-	 */
-	public function __construct() {
-	}
+	private $val;
 
 	/**
 	 * (non-PHPdoc)
 	 * @see IValidator::isValid()
 	 */
 	public function isValid($val) {
-		return ($val !== null) ? true : false;
-	}
-
-	/**
-	 *
-	 * 直近のエラーメッセージを返します。
-	 *
-	 * @return string
-	 */
-	public function getMessage() {
-		return sprintf($this->messageTmpl) . "\n";
+		$this->val = $val;
+		$res = is_null($val) === false;
+		if ($res === false) {
+			throw new NotNullException($this->val);
+		}
+		return $res;
 	}
 
 }

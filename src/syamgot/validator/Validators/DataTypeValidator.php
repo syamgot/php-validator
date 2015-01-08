@@ -3,7 +3,8 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-use \Exception;
+use syamgot\Validator\Exception\DataTypeException;
+use \InvalidArgumentException;
 
 /**
  * 値の型を判定するクラスです.
@@ -15,11 +16,9 @@ use \Exception;
  */
 class DataTypeValidator implements IValidator {
 
-	private $messageTmpl = "[DataTypeValidator] it does not match. (%s, %s)";
-
 	private $val;
-	private $_dataType;
-	private $_types = array('int', 'integer', 'float', 'string', 'array', 'bool', 'null');
+	private $type;
+	private $types = array('int', 'integer', 'float', 'string', 'array', 'bool', 'null');
 	
 	/**
 	 * 
@@ -28,22 +27,20 @@ class DataTypeValidator implements IValidator {
 	 * @param string $type
 	 */
 	public function __construct($type) {
-		$this->setDataType((string) $type);
+		$this->setDataType($type);
 	}
 	
 	/**
 	 * チェックしたいデータ型をセットします.
 	 * 
 	 * @param mixed $dataType
-	 * @throws Exception チェック対象外のデータ型であれば、エラー
+	 * @throws InvalidArgumentException チェック対象外のデータ型であれば、エラー
 	 */
-	public function setDataType($dataType) {
-		
-		if (!in_array($dataType, $this->_types)) {
-			throw new Exception(sprintf('it is an incorrect value. (%s)' , $dataType));
+	public function setDataType($type) {
+		if (!in_array($type, $this->types)) {
+			throw new InvalidArgumentException('不正な引数です.');
 		}
-		
-		$this->_dataType = $dataType;
+		$this->type = (string) $type;
 	}
 
 	/**
@@ -53,34 +50,28 @@ class DataTypeValidator implements IValidator {
 	public function isValid($val) {
 
 		$this->val = $val;
-		$ereg = '/^'.$this->_dataType.'$/i';
+		$ereg = '/^'.$this->type.'$/i';
 		
 		if (preg_match($ereg, 'int') || preg_match($ereg, 'integer')) {
-			$valid_state = is_int($val);
+			$state = is_int($val);
 		} else if (preg_match($ereg, 'float')) {
-			$valid_state = is_float($val);
+			$state = is_float($val);
 		} else if (preg_match($ereg, 'string')) {
-			$valid_state = is_string($val);
+			$state = is_string($val);
 		} else if (preg_match($ereg, 'array')) {
-			$valid_state = is_array($val);
+			$state = is_array($val);
 		} else if (preg_match($ereg, 'bool')) {
-			$valid_state = is_bool($val);
+			$state = is_bool($val);
 		} else if (preg_match($ereg, 'null')) {
-			$valid_state = is_null($val);
+			$state = is_null($val);
 		}
 
-		return $valid_state;
+		if ($state === false) {
+			throw new DataTypeException($this->val, $this->type);
+			return false;
+		}
+		return true;
 
-	}
-
-	/**
-	 * 
-	 * 直近のエラーメッセージを返します。
-	 * 
-	 * @return string 
-	 */
-	public function getMessage() {
-		return sprintf($this->messageTmpl, $this->val, $this->_dataType) . "\n";
 	}
 
 }

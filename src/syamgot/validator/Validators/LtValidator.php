@@ -3,6 +3,7 @@
 namespace syamgot\validator\Validators;
 
 use syamgot\Validator\IValidator;
+use syamgot\Validator\Exception\LtException;
 
 
 /**
@@ -13,10 +14,8 @@ use syamgot\Validator\IValidator;
  */
 class LtValidator implements IValidator {
 
-	private $messageTmpl = "[LtValidator] it does not match. (%s)";
-
-	private $_max;
-	private $_val;
+	private $max;
+	private $val;
 
 	/**
 	 * 
@@ -25,7 +24,7 @@ class LtValidator implements IValidator {
 	 * @param int $max
 	 */
 	public function __construct($max) {
-		$this->setMax((int) $max);
+		$this->setMax($max);
 	}
 
 	/**
@@ -33,18 +32,12 @@ class LtValidator implements IValidator {
 	 * @see IValidator::isValid()
 	 */
 	public function isValid($val) {
-		$this->_val = (int) $val;
-		return ($this->_val < $this->_max) ? true : false;
-	}
-
-	/**
-	 *
-	 * 直近のエラーメッセージを返します。
-	 *
-	 * @return string
-	 */
-	public function getMessage() {
-		return sprintf($this->messageTmpl, $this->_val) . "\n";
+		$this->val = (int) $val;
+		if ($this->val >= $this->max) {
+			throw new LtException($this->val, $this->max);
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -53,7 +46,7 @@ class LtValidator implements IValidator {
 	 * @param int $val
 	 */
 	public function setMax($val) {
-		$this->_max = (int) $val;
+		$this->max = (int) $val;
 	}
 	
 }
