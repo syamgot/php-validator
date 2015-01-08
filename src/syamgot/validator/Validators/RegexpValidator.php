@@ -3,7 +3,7 @@
 namespace syamgot\Validator\Validators;
 
 use syamgot\Validator\IValidator;
-use syamgot\Validator\Exception\RegularExpressionException;
+use syamgot\Validator\Exception\RegexpException;
 
 
 /**
@@ -12,14 +12,14 @@ use syamgot\Validator\Exception\RegularExpressionException;
  * @package validator
  * @author syamgot
  */
-class RegularExpressionValidator implements IValidator {
+class RegexpValidator implements IValidator {
 
 	private $pattern;
 	private $val;
 
 	/**
 	 * 
-	 * 新しい RegularExpressionValidator インスタンスを作成します.
+	 * 新しい RegexpValidator インスタンスを作成します.
 	 * 
 	 */
 	public function __construct($pattern) {
@@ -33,7 +33,7 @@ class RegularExpressionValidator implements IValidator {
 	public function isValid($val) {
 		$this->val = (string) $val;
 		if (preg_match($this->pattern, $this->val) === 0) {
-			throw new RegularExpressionException($this->val, $this->pattern);
+			throw new RegexpException($this->val, $this->pattern);
 			return false;
 		}
 		return true;

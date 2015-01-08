@@ -2,16 +2,16 @@
 
 namespace Tests;
 
-use syamgot\validator\Validators\RegularExpressionValidator;
-use syamgot\Validator\Exception\RegularExpressionException;
+use syamgot\validator\Validators\RegexpValidator;
+use syamgot\Validator\Exception\RegexpException;
 
 
 /**
- * RegularExpressionValidatorTest unit test
+ * RegexpValidatorTest unit test
  * 
  * @author syamgot
  */
-class RegularExpressionValidatorTest extends \PHPUnit_Framework_TestCase {
+class RegexpValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerTest
@@ -20,10 +20,10 @@ class RegularExpressionValidatorTest extends \PHPUnit_Framework_TestCase {
 	public function testIsValid($val, $pattern, $res) {
 		$state = $res === false;
 		try {
-			$obj = new RegularExpressionValidator($pattern);
+			$obj = new RegexpValidator($pattern);
 			$state = $obj->isValid($val);
 		}
-		catch (RegularExpressionException $e) {
+		catch (RegexpException $e) {
 			//echo $e->getMessage()."\n";
 			$state = false;
 		}

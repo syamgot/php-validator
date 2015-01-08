@@ -11,7 +11,7 @@ use syamgot\Validator\Validators\LeValidator;
 use syamgot\Validator\Validators\LtValidator;
 use syamgot\Validator\Validators\NotEmptyValidator;
 use syamgot\Validator\Validators\NotNullValidator;
-use syamgot\Validator\Validators\RegularExpressionValidator;
+use syamgot\Validator\Validators\RegexpValidator;
 use syamgot\Validator\Validators\LengthValidator;
 use syamgot\Validator\Validator;
 use syamgot\Validator\Exception\ValidatorException;
@@ -166,7 +166,7 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 			    	, new LeValidator(1)
 		    	), -1, false)
 	    	, array(array(
-			    	  new RegularExpressionValidator('/^[0-9a-z]+$/')
+			    	  new RegexpValidator('/^[0-9a-z]+$/')
 		    	), '000aaaa', true)
     	);
     }
@@ -208,7 +208,7 @@ class validatorTest extends \PHPUnit_Framework_TestCase {
 			    	, array('name' => 'Le', 'max' => 1)
 			))
 	    	, array(array(
-	    			  array('name' => 'RegularExpression', 'pattern' => "/^[0-9a-z]+$/")
+	    			  array('name' => 'regexp', 'pattern' => "/^[0-9a-z]+$/")
 			))
     	);
 	}

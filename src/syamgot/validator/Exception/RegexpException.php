@@ -6,7 +6,7 @@ namespace syamgot\Validator\Exception;
  * 
  * 
  */
-class RegularExpressionException extends AbValidatorsException {
+class RegexpException extends AbValidatorsException {
 
 	/**
 	 * 
