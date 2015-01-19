@@ -79,7 +79,10 @@ class Validator implements IValidator {
 				}
 			}
 			else {
-				$classname = ucfirst((string) array_shift($args));
+				$classname = (string) array_shift($args);
+				$classname = (preg_match('/^not/i',$classname))
+								? 'Not'.ucfirst((substr($classname,3)))
+								: ucfirst($classname);
 				if ($classname === '') {
 					throw new InvalidArgumentException('引数が不正です.');
 				}	
