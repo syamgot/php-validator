@@ -1,27 +1,27 @@
 <?php
 
-namespace Tests;
+namespace syamgot\Validator\Tests;
 
-use syamgot\validator\Validators\GtValidator;
-use syamgot\Validator\Exception\GtException;
+use syamgot\validator\Validators\LtValidator;
+use syamgot\Validator\Exception\LtException;
 
 /**
- * GtValidator unit test
+ * LtValidator unit test
  * 
  * @author syamgot
  */
-class GtValidatorTest extends \PHPUnit_Framework_TestCase {
+class LtValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
 	 */
-	public function testIsValid($min, $val, $res) {
+	public function testIsValid($max, $val, $res) {
 		$state = $res === false;
 		try {
-			$obj = new GtValidator($min);
+			$obj = new LtValidator($max);
 			$state = $obj->isValid($val);
 		}
-		catch (GtException $e) {
+		catch (LtException $e) {
 			$state = false;
 		}
 		$this->assertEquals($state, $res);
@@ -32,10 +32,10 @@ class GtValidatorTest extends \PHPUnit_Framework_TestCase {
      */
     public function providerIsValid() {
     	return array(
-    		  array(5, 4, false)
+    		  array(5, 4, true)
     		, array(5, 5, false)
-    		, array(5, 6, true)
-    		, array(0, -1, false)
+    		, array(5, 6, false)
+    		, array(0, -1, true)
     		, array(0, 0, false)
     	);
     }

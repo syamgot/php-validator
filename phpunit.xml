@@ -9,20 +9,14 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="tests/bootstrap.php"
+         bootstrap="./tests/bootstrap.php"
 >
 
     <testsuites>
         <testsuite name="AllTest">
-            <directory>./tests/Tests/</directory>
+            <directory>./tests/syamgot</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./src/</directory>
-        </whitelist>
-    </filter>
 
 	<logging>
 	  <log type="coverage-html" target="./reports/coverage" charset="UTF-8"

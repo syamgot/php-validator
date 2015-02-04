@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace syamgot\Validator\Tests;
 
 use syamgot\Validator\Validators\AlnumValidator;
 use syamgot\Validator\Validators\DataTypeValidator;

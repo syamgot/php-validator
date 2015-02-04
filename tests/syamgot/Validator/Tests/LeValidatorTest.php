@@ -1,16 +1,17 @@
 <?php
 
-namespace Tests;
+namespace syamgot\Validator\Tests;
 
-use syamgot\validator\Validators\LtValidator;
-use syamgot\Validator\Exception\LtException;
+use syamgot\validator\Validators\LeValidator;
+use syamgot\Validator\Exception\LeException;
+
 
 /**
- * LtValidator unit test
+ * LeValidator unit test
  * 
  * @author syamgot
  */
-class LtValidatorTest extends \PHPUnit_Framework_TestCase {
+class LeValidatorTest extends \PHPUnit_Framework_TestCase {
     
 	/**
 	 * @dataProvider providerIsValid
@@ -18,10 +19,10 @@ class LtValidatorTest extends \PHPUnit_Framework_TestCase {
 	public function testIsValid($max, $val, $res) {
 		$state = $res === false;
 		try {
-			$obj = new LtValidator($max);
+			$obj = new LeValidator($max);
 			$state = $obj->isValid($val);
 		}
-		catch (LtException $e) {
+		catch (LeException $e) {
 			$state = false;
 		}
 		$this->assertEquals($state, $res);
@@ -33,10 +34,10 @@ class LtValidatorTest extends \PHPUnit_Framework_TestCase {
     public function providerIsValid() {
     	return array(
     		  array(5, 4, true)
-    		, array(5, 5, false)
+    		, array(5, 5, true)
     		, array(5, 6, false)
     		, array(0, -1, true)
-    		, array(0, 0, false)
+    		, array(0, 0, true)
     	);
     }
 

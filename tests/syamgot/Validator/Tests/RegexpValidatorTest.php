@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace syamgot\Validator\Tests;
 
 use syamgot\validator\Validators\RegexpValidator;
 use syamgot\Validator\Exception\RegexpException;
