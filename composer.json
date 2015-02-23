@@ -1,5 +1,5 @@
 {
-    "name": "syamgot/php-curl",
+    "name": "syamgot/php-validator",
     "description": "php curl function wrapper",
     "keywords": ["validator", "validation"],
     "type": "library",
