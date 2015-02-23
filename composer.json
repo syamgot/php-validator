@@ -1,6 +1,6 @@
 {
     "name": "syamgot/php-validator",
-    "description": "php curl function wrapper",
+    "description": "php validator library",
     "keywords": ["validator", "validation"],
     "type": "library",
     "license": "MIT",
