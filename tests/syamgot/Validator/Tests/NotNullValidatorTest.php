@@ -2,7 +2,7 @@
 
 namespace syamgot\Validator\Tests;
 
-use syamgot\validator\Validators\NotNullValidator;
+use syamgot\Validator\Validators\NotNullValidator;
 use syamgot\Validator\Exception\NotNullException;
 
 

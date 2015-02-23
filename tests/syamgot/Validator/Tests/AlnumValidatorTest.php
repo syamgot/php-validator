@@ -2,7 +2,7 @@
 
 namespace syamgot\Validator\Tests;
 
-use syamgot\validator\Validators\AlnumValidator;
+use syamgot\Validator\Validators\AlnumValidator;
 use syamgot\Validator\Exception\AlnumException;
 
 

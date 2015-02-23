@@ -2,7 +2,7 @@
 
 namespace syamgot\Validator\Tests;
 
-use syamgot\validator\Validators\LeValidator;
+use syamgot\Validator\Validators\LeValidator;
 use syamgot\Validator\Exception\LeException;
 
 
